@@ -1,0 +1,27 @@
+{
+  "@@locale": "ar",
+  "appTitle": "قائمة الطعام",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "home": "الرئيسية",
+  "@home": {
+    "description": "Home page title"
+  },
+  "cart": "السلة",
+  "@cart": {
+    "description": "Cart page title"
+  },
+  "language": "اللغة",
+  "@language": {
+    "description": "Language label"
+  },
+  "english": "الإنجليزية",
+  "@english": {
+    "description": "English language"
+  },
+  "arabic": "العربية",
+  "@arabic": {
+    "description": "Arabic language"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "@@locale": "en",
+  "appTitle": "Food Menu",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home page title"
+  },
+  "cart": "Cart",
+  "@cart": {
+    "description": "Cart page title"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language label"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language"
+  },
+  "arabic": "Arabic",
+  "@arabic": {
+    "description": "Arabic language"
+  }
+}
