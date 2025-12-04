@@ -8,6 +8,7 @@ import 'core/config/locale/locale_cubit.dart';
 import 'core/config/locale/locale_state.dart';
 
 import 'core/config/theme/theme_cubit.dart';
+import 'features/home/presentation/cubits/home_cubit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => LocaleCubit()),
         BlocProvider(create: (context) => ThemeCubit()),
+        BlocProvider(create: (context) => HomeCubit()..initialize()),
       ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
         builder: (context, localeState) {

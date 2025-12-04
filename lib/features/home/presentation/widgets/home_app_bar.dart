@@ -4,7 +4,6 @@ import 'package:food_menu_app/core/config/locale/locale_state.dart';
 import 'package:food_menu_app/core/utilities/app_images.dart';
 import '../../../../core/config/locale/locale_cubit.dart';
 import '../../../../core/config/theme/theme_cubit.dart';
-import '../../../../core/utilities/app_colors.dart';
 import '../../../../core/utilities/app_fonts.dart';
 
 /// Custom AppBar widget for home page
@@ -13,7 +12,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
     return AppBar(
+      backgroundColor: Colors.transparent,
       leading: Image.asset(Assets.logo),
       actions: [
         // Language Toggle Button
@@ -24,14 +26,14 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 context.read<LocaleCubit>().toggleLanguage();
               },
               style: TextButton.styleFrom(
-                foregroundColor: AppColors.white,
+                foregroundColor: theme.colorScheme.onSurface,
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 minimumSize: const Size(48, 48),
               ),
               child: Text(
                 state.languageCode == 'en' ? 'AR' : 'EN',
                 style: AppFonts.styleBold16(context).copyWith(
-                  color: AppColors.white,
+                  color: theme.colorScheme.onSurface,
                 ),
               ),
             );
@@ -39,15 +41,18 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         // Dark Mode Toggle Button
         BlocBuilder<ThemeCubit, ThemeMode>(
-          builder: (context, state) {
+          builder: (context, themeMode) {
             return IconButton(
               onPressed: () {
                 context.read<ThemeCubit>().toggleTheme();
               },
               icon: Icon(
-                state == ThemeMode.dark ? Icons.light_mode : Icons.dark_mode,
-                color: AppColors.white,
+                themeMode == ThemeMode.dark ? Icons.light_mode : Icons.dark_mode,
               ),
+              color: theme.colorScheme.onSurface,
+              tooltip: themeMode == ThemeMode.dark 
+                  ? 'Switch to Light Mode' 
+                  : 'Switch to Dark Mode',
             );
           },
         ),

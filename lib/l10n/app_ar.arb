@@ -23,5 +23,256 @@
   "arabic": "العربية",
   "@arabic": {
     "description": "Arabic language"
+  },
+  "quantity": "الكمية",
+  "@quantity": {
+    "description": "Quantity label"
+  },
+  "spiceLevel": "مستوى التوابل",
+  "@spiceLevel": {
+    "description": "Spice level section title"
+  },
+  "addOns": "الإضافات",
+  "@addOns": {
+    "description": "Add-ons section title"
+  },
+  "specialInstructions": "تعليمات خاصة",
+  "@specialInstructions": {
+    "description": "Special instructions section title"
+  },
+  "specialInstructionsHint": "أضف ملاحظات للمطبخ (بدون مخلل، الصوص على الجانب، إلخ.)",
+  "@specialInstructionsHint": {
+    "description": "Placeholder text for special instructions"
+  },
+  "applyTo": "تطبيق على:",
+  "@applyTo": {
+    "description": "Label for add-on quantity selector"
+  },
+  "ofPreposition": "من",
+  "@ofPreposition": {
+    "description": "Preposition for quantity (X of Y)"
+  },
+  "total": "الإجمالي",
+  "@total": {
+    "description": "Total price label"
+  },
+  "item": "عنصر",
+  "@item": {
+    "description": "Single item"
+  },
+  "items": "عناصر",
+  "@items": {
+    "description": "Multiple items"
+  },
+  "addToCart": "أضف إلى السلة",
+  "@addToCart": {
+    "description": "Add to cart button text"
+  },
+  "addedToCart": "تمت إضافة {count} {itemText} إلى السلة!",
+  "@addedToCart": {
+    "description": "Success message when item added to cart",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "itemText": {
+        "type": "String"
+      }
+    }
+  },
+  "preparationTime": "دقيقة",
+  "@preparationTime": {
+    "description": "Minutes abbreviation for preparation time"
+  },
+  "searchHint": "ابحث عن برجر، بيتزا، مشروبات...",
+  "@searchHint": {
+    "description": "Hint text for search bar"
+  },
+  "homeNav": "الرئيسية",
+  "@homeNav": {
+    "description": "Home navigation label"
+  },
+  "bestSellers": "الأكثر مبيعاً",
+  "@bestSellers": {
+    "description": "Best sellers section title"
+  },
+  "seeAll": "عرض الكل",
+  "@seeAll": {
+    "description": "See all button text"
+  },
+  "categories": "التصنيفات",
+  "@categories": {
+    "description": "Categories section title"
+  },
+  "browseAll": "تصفح الكل",
+  "@browseAll": {
+    "description": "Browse all button text"
+  },
+  "categoryItems": "عناصر التصنيف",
+  "@categoryItems": {
+    "description": "Category items section title"
+  },
+  "switchToList": "التبديل إلى القائمة",
+  "@switchToList": {
+    "description": "Tooltip for switching to list view"
+  },
+  "switchToGrid": "التبديل إلى الشبكة",
+  "@switchToGrid": {
+    "description": "Tooltip for switching to grid view"
+  },
+  "todaysOffers": "عروض اليوم",
+  "@todaysOffers": {
+    "description": "Offers section title"
+  },
+  "viewAll": "عرض الكل",
+  "@viewAll": {
+    "description": "View all button text"
+  },
+  "limitedTime": "لفترة محدودة",
+  "@limitedTime": {
+    "description": "Limited time badge text"
+  },
+  "order": "اطلب",
+  "@order": {
+    "description": "Order button text"
+  },
+  "burgers": "برجر",
+  "@burgers": {
+    "description": "Burgers category"
+  },
+  "pizza": "بيتزا",
+  "@pizza": {
+    "description": "Pizza category"
+  },
+  "drinks": "مشروبات",
+  "@drinks": {
+    "description": "Drinks category"
+  },
+  "desserts": "حلويات",
+  "@desserts": {
+    "description": "Desserts category"
+  },
+  "offerTitle": "خصم يصل إلى 40% على\nالبرجر",
+  "@offerTitle": {
+    "description": "Mock offer title"
+  },
+  "offerSubtitle": "اطلب 2 واحصل على بطاطس مجانية مع\nمجموعات مختارة.",
+  "@offerSubtitle": {
+    "description": "Mock offer subtitle"
+  },
+  "burger1Name": "برجر مزدوج كلاسيكي",
+  "@burger1Name": { "description": "Burger 1 Name" },
+  "burger1Desc": "شريحة لحم بقري، شيدر، خس، طماطم وصوص خاص.",
+  "@burger1Desc": { "description": "Burger 1 Description" },
+  "burger2Name": "برجر دجاج حار",
+  "@burger2Name": { "description": "Burger 2 Name" },
+  "burger2Desc": "دجاج مقرمش، هلابينو، جبنة بيبر جاك ومايونيز شيبوتلي.",
+  "@burger2Desc": { "description": "Burger 2 Description" },
+  "burger3Name": "فيجي ديلايت",
+  "@burger3Name": { "description": "Burger 3 Name" },
+  "burger3Desc": "شريحة نباتية، خس، طماطم، مخلل وصوص خاص.",
+  "@burger3Desc": { "description": "Burger 3 Description" },
+  "addonCheese": "شيدر إضافي",
+  "@addonCheese": { "description": "Addon Cheese Name" },
+  "addonCheeseDesc": "أضف شريحة إضافية من الجبن",
+  "@addonCheeseDesc": { "description": "Addon Cheese Description" },
+  "addonBacon": "بيكون",
+  "@addonBacon": { "description": "Addon Bacon Name" },
+  "addonBaconDesc": "شرائح بيكون مقرمشة مدخنة",
+  "@addonBaconDesc": { "description": "Addon Bacon Description" },
+  "addonCombo": "ترقية إلى كومبو",
+  "@addonCombo": { "description": "Addon Combo Name" },
+  "addonComboDesc": "بطاطس + مشروب غازي",
+  "@addonComboDesc": { "description": "Addon Combo Description" },
+  "addonAvocado": "أفوكادو",
+  "@addonAvocado": { "description": "Addon Avocado Name" },
+  "addonAvocadoDesc": "شرائح أفوكادو طازجة",
+  "@addonAvocadoDesc": { "description": "Addon Avocado Description" },
+  "addonMushrooms": "فطر مشوي",
+  "@addonMushrooms": { "description": "Addon Mushrooms Name" },
+  "addonMushroomsDesc": "فطر بورتوبيلو سوتيه",
+  "@addonMushroomsDesc": { "description": "Addon Mushrooms Description" },
+  "checkoutComingSoon": "وظيفة الدفع قريباً!",
+  "@checkoutComingSoon": { "description": "Checkout coming soon message" },
+  "cartEmpty": "سلتك فارغة",
+  "@cartEmpty": { "description": "Empty cart message" },
+  "addItemsToStart": "أضف عناصر للبدء",
+  "@addItemsToStart": { "description": "Add items hint" },
+  "continueShopping": "متابعة التسوق",
+  "@continueShopping": { "description": "Continue shopping button text" },
+  "each": "للقطعة",
+  "@each": { "description": "Per item label" },
+  "summary": "الملخص",
+  "@summary": { "description": "Cart summary title" },
+  "subtotal": "المجموع الفرعي",
+  "@subtotal": { "description": "Subtotal label" },
+  "deliveryFee": "رسوم التوصيل",
+  "@deliveryFee": { "description": "Delivery fee label" },
+  "serviceFee": "رسوم الخدمة",
+  "@serviceFee": { "description": "Service fee label" },
+  "checkout": "الدفع",
+  "@checkout": { "description": "Checkout button text" },
+  "editOrder": "تعديل الطلب",
+  "@editOrder": { "description": "Edit order dialog title" },
+  "quantityLabel": "الكمية",
+  "@quantityLabel": { "description": "Quantity label full text" },
+  "selectAddonsHint": "حدد عدد العناصر التي يجب أن تحتوي على كل إضافة",
+  "@selectAddonsHint": { "description": "Hint for addon selection" },
+  "saveChanges": "حفظ التغييرات",
+  "@saveChanges": { "description": "Save changes button text" },
+  "checkoutTitle": "إتمام الطلب",
+  "@checkoutTitle": { "description": "Checkout page title" },
+  "deliveryInfo": "معلومات التوصيل",
+  "@deliveryInfo": { "description": "Delivery information section title" },
+  "fullName": "الاسم الكامل",
+  "@fullName": { "description": "Full name field label" },
+  "fullNameHint": "أدخل اسمك الكامل",
+  "@fullNameHint": { "description": "Full name field hint" },
+  "phoneNumber": "رقم الهاتف",
+  "@phoneNumber": { "description": "Phone number field label" },
+  "phoneNumberHint": "أدخل رقم هاتفك",
+  "@phoneNumberHint": { "description": "Phone number field hint" },
+  "address": "عنوان التوصيل",
+  "@address": { "description": "Address field label" },
+  "addressHint": "أدخل عنوان التوصيل",
+  "@addressHint": { "description": "Address field hint" },
+  "deliveryNotes": "ملاحظات التوصيل (اختياري)",
+  "@deliveryNotes": { "description": "Delivery notes field label" },
+  "deliveryNotesHint": "أضف أي تعليمات خاصة بالتوصيل",
+  "@deliveryNotesHint": { "description": "Delivery notes field hint" },
+  "confirmOrder": "تأكيد الطلب",
+  "@confirmOrder": { "description": "Confirm order button text" },
+  "orderSummary": "ملخص الطلب",
+  "@orderSummary": { "description": "Order summary section title" },
+  "orderConfirmation": "تأكيد الطلب",
+  "@orderConfirmation": { "description": "Order confirmation dialog title" },
+  "confirmAndPay": "تأكيد وإرسال الطلب",
+  "@confirmAndPay": { "description": "Final confirm button text" },
+  "orderSuccess": "تم تقديم الطلب بنجاح!",
+  "@orderSuccess": { "description": "Order success title" },
+  "orderSuccessMessage": "تم تقديم طلبك وسيتم توصيله قريباً.",
+  "@orderSuccessMessage": { "description": "Order success message" },
+  "orderNumber": "رقم الطلب",
+  "@orderNumber": { "description": "Order number label" },
+  "backToHome": "العودة للرئيسية",
+  "@backToHome": { "description": "Back to home button text" },
+  "fieldRequired": "هذا الحقل مطلوب",
+  "@fieldRequired": { "description": "Required field validation message" },
+  "invalidPhone": "الرجاء إدخال رقم هاتف صحيح",
+  "@invalidPhone": { "description": "Invalid phone validation message" },
+  "reviewOrder": "مراجعة طلبك",
+  "@reviewOrder": { "description": "Review order section title" },
+  "customerInfo": "معلومات العميل",
+  "@customerInfo": { "description": "Customer info section title" },
+  "cancel": "إلغاء",
+  "@cancel": { "description": "Cancel button text" },
+  "itemsCount": "{count} عناصر",
+  "@itemsCount": {
+    "description": "Items count label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

@@ -27,6 +27,36 @@ class RouteConstants {
   static const String cartName = 'cart';
 
   // ============================================
+  // Item Details Route
+  // ============================================
+  
+  /// Item details route path
+  static const String itemDetailsPath = '/item-details';
+  
+  /// Item details route name
+  static const String itemDetailsName = 'item-details';
+
+  // ============================================
+  // Checkout Route
+  // ============================================
+  
+  /// Checkout route path
+  static const String checkoutPath = '/checkout';
+  
+  /// Checkout route name
+  static const String checkoutName = 'checkout';
+
+  // ============================================
+  // Order Success Route
+  // ============================================
+  
+  /// Order success route path
+  static const String orderSuccessPath = '/order-success';
+  
+  /// Order success route name
+  static const String orderSuccessName = 'order-success';
+
+  // ============================================
   // Example Feature Routes (Add your routes here)
   // ============================================
   

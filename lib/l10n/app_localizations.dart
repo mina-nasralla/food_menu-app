@@ -133,6 +133,522 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Arabic'**
   String get arabic;
+
+  /// Quantity label
+  ///
+  /// In en, this message translates to:
+  /// **'Qty'**
+  String get quantity;
+
+  /// Spice level section title
+  ///
+  /// In en, this message translates to:
+  /// **'Spice level'**
+  String get spiceLevel;
+
+  /// Add-ons section title
+  ///
+  /// In en, this message translates to:
+  /// **'Add-ons'**
+  String get addOns;
+
+  /// Special instructions section title
+  ///
+  /// In en, this message translates to:
+  /// **'Special Instructions'**
+  String get specialInstructions;
+
+  /// Placeholder text for special instructions
+  ///
+  /// In en, this message translates to:
+  /// **'Add notes for the kitchen (no pickles, sauce on the side, etc.)'**
+  String get specialInstructionsHint;
+
+  /// Label for add-on quantity selector
+  ///
+  /// In en, this message translates to:
+  /// **'Apply to:'**
+  String get applyTo;
+
+  /// Preposition for quantity (X of Y)
+  ///
+  /// In en, this message translates to:
+  /// **'of'**
+  String get ofPreposition;
+
+  /// Total price label
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// Single item
+  ///
+  /// In en, this message translates to:
+  /// **'item'**
+  String get item;
+
+  /// Multiple items
+  ///
+  /// In en, this message translates to:
+  /// **'items'**
+  String get items;
+
+  /// Add to cart button text
+  ///
+  /// In en, this message translates to:
+  /// **'Add to cart'**
+  String get addToCart;
+
+  /// Success message when item added to cart
+  ///
+  /// In en, this message translates to:
+  /// **'Added {count} {itemText} to cart!'**
+  String addedToCart(int count, String itemText);
+
+  /// Minutes abbreviation for preparation time
+  ///
+  /// In en, this message translates to:
+  /// **'min'**
+  String get preparationTime;
+
+  /// Hint text for search bar
+  ///
+  /// In en, this message translates to:
+  /// **'Search for burgers, pizza, drinks...'**
+  String get searchHint;
+
+  /// Home navigation label
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get homeNav;
+
+  /// Best sellers section title
+  ///
+  /// In en, this message translates to:
+  /// **'Best Sellers'**
+  String get bestSellers;
+
+  /// See all button text
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get seeAll;
+
+  /// Categories section title
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// Browse all button text
+  ///
+  /// In en, this message translates to:
+  /// **'Browse all'**
+  String get browseAll;
+
+  /// Category items section title
+  ///
+  /// In en, this message translates to:
+  /// **'Category Items'**
+  String get categoryItems;
+
+  /// Tooltip for switching to list view
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to List View'**
+  String get switchToList;
+
+  /// Tooltip for switching to grid view
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to Grid View'**
+  String get switchToGrid;
+
+  /// Offers section title
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s offers'**
+  String get todaysOffers;
+
+  /// View all button text
+  ///
+  /// In en, this message translates to:
+  /// **'View all'**
+  String get viewAll;
+
+  /// Limited time badge text
+  ///
+  /// In en, this message translates to:
+  /// **'Limited time'**
+  String get limitedTime;
+
+  /// Order button text
+  ///
+  /// In en, this message translates to:
+  /// **'Order'**
+  String get order;
+
+  /// Burgers category
+  ///
+  /// In en, this message translates to:
+  /// **'Burgers'**
+  String get burgers;
+
+  /// Pizza category
+  ///
+  /// In en, this message translates to:
+  /// **'Pizza'**
+  String get pizza;
+
+  /// Drinks category
+  ///
+  /// In en, this message translates to:
+  /// **'Drinks'**
+  String get drinks;
+
+  /// Desserts category
+  ///
+  /// In en, this message translates to:
+  /// **'Desserts'**
+  String get desserts;
+
+  /// Mock offer title
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 40% off on\nBurgers'**
+  String get offerTitle;
+
+  /// Mock offer subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Order 2 get free fries on\nselected combos.'**
+  String get offerSubtitle;
+
+  /// Burger 1 Name
+  ///
+  /// In en, this message translates to:
+  /// **'Classic Double Burger'**
+  String get burger1Name;
+
+  /// Burger 1 Description
+  ///
+  /// In en, this message translates to:
+  /// **'Beef patty, cheddar, lettuce, tomato & house sauce.'**
+  String get burger1Desc;
+
+  /// Burger 2 Name
+  ///
+  /// In en, this message translates to:
+  /// **'Spicy Chicken Burger'**
+  String get burger2Name;
+
+  /// Burger 2 Description
+  ///
+  /// In en, this message translates to:
+  /// **'Crispy chicken, jalapeños, pepper jack cheese & chipotle mayo.'**
+  String get burger2Desc;
+
+  /// Burger 3 Name
+  ///
+  /// In en, this message translates to:
+  /// **'Veggie Delight'**
+  String get burger3Name;
+
+  /// Burger 3 Description
+  ///
+  /// In en, this message translates to:
+  /// **'Plant-based patty, lettuce, tomato, pickles & special sauce.'**
+  String get burger3Desc;
+
+  /// Addon Cheese Name
+  ///
+  /// In en, this message translates to:
+  /// **'Extra cheddar'**
+  String get addonCheese;
+
+  /// Addon Cheese Description
+  ///
+  /// In en, this message translates to:
+  /// **'Add one extra slice of cheese'**
+  String get addonCheeseDesc;
+
+  /// Addon Bacon Name
+  ///
+  /// In en, this message translates to:
+  /// **'Bacon'**
+  String get addonBacon;
+
+  /// Addon Bacon Description
+  ///
+  /// In en, this message translates to:
+  /// **'Smoked crispy bacon strips'**
+  String get addonBaconDesc;
+
+  /// Addon Combo Name
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade to combo'**
+  String get addonCombo;
+
+  /// Addon Combo Description
+  ///
+  /// In en, this message translates to:
+  /// **'Fries + soft drink'**
+  String get addonComboDesc;
+
+  /// Addon Avocado Name
+  ///
+  /// In en, this message translates to:
+  /// **'Avocado'**
+  String get addonAvocado;
+
+  /// Addon Avocado Description
+  ///
+  /// In en, this message translates to:
+  /// **'Fresh sliced avocado'**
+  String get addonAvocadoDesc;
+
+  /// Addon Mushrooms Name
+  ///
+  /// In en, this message translates to:
+  /// **'Grilled mushrooms'**
+  String get addonMushrooms;
+
+  /// Addon Mushrooms Description
+  ///
+  /// In en, this message translates to:
+  /// **'Sautéed portobello mushrooms'**
+  String get addonMushroomsDesc;
+
+  /// Checkout coming soon message
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout functionality coming soon!'**
+  String get checkoutComingSoon;
+
+  /// Empty cart message
+  ///
+  /// In en, this message translates to:
+  /// **'Your cart is empty'**
+  String get cartEmpty;
+
+  /// Add items hint
+  ///
+  /// In en, this message translates to:
+  /// **'Add items to get started'**
+  String get addItemsToStart;
+
+  /// Continue shopping button text
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Shopping'**
+  String get continueShopping;
+
+  /// Per item label
+  ///
+  /// In en, this message translates to:
+  /// **'each'**
+  String get each;
+
+  /// Cart summary title
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get summary;
+
+  /// Subtotal label
+  ///
+  /// In en, this message translates to:
+  /// **'Subtotal'**
+  String get subtotal;
+
+  /// Delivery fee label
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery fee'**
+  String get deliveryFee;
+
+  /// Service fee label
+  ///
+  /// In en, this message translates to:
+  /// **'Service fee'**
+  String get serviceFee;
+
+  /// Checkout button text
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
+  String get checkout;
+
+  /// Edit order dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Order'**
+  String get editOrder;
+
+  /// Quantity label full text
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get quantityLabel;
+
+  /// Hint for addon selection
+  ///
+  /// In en, this message translates to:
+  /// **'Select how many items should have each add-on'**
+  String get selectAddonsHint;
+
+  /// Save changes button text
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveChanges;
+
+  /// Checkout page title
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
+  String get checkoutTitle;
+
+  /// Delivery information section title
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Information'**
+  String get deliveryInfo;
+
+  /// Full name field label
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get fullName;
+
+  /// Full name field hint
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get fullNameHint;
+
+  /// Phone number field label
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// Phone number field hint
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get phoneNumberHint;
+
+  /// Address field label
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Address'**
+  String get address;
+
+  /// Address field hint
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your delivery address'**
+  String get addressHint;
+
+  /// Delivery notes field label
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Notes (Optional)'**
+  String get deliveryNotes;
+
+  /// Delivery notes field hint
+  ///
+  /// In en, this message translates to:
+  /// **'Add any special delivery instructions'**
+  String get deliveryNotesHint;
+
+  /// Confirm order button text
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Order'**
+  String get confirmOrder;
+
+  /// Order summary section title
+  ///
+  /// In en, this message translates to:
+  /// **'Order Summary'**
+  String get orderSummary;
+
+  /// Order confirmation dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Order Confirmation'**
+  String get orderConfirmation;
+
+  /// Final confirm button text
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm & Place Order'**
+  String get confirmAndPay;
+
+  /// Order success title
+  ///
+  /// In en, this message translates to:
+  /// **'Order Placed Successfully!'**
+  String get orderSuccess;
+
+  /// Order success message
+  ///
+  /// In en, this message translates to:
+  /// **'Your order has been placed and will be delivered soon.'**
+  String get orderSuccessMessage;
+
+  /// Order number label
+  ///
+  /// In en, this message translates to:
+  /// **'Order Number'**
+  String get orderNumber;
+
+  /// Back to home button text
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get backToHome;
+
+  /// Required field validation message
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required'**
+  String get fieldRequired;
+
+  /// Invalid phone validation message
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number'**
+  String get invalidPhone;
+
+  /// Review order section title
+  ///
+  /// In en, this message translates to:
+  /// **'Review Your Order'**
+  String get reviewOrder;
+
+  /// Customer info section title
+  ///
+  /// In en, this message translates to:
+  /// **'Customer Information'**
+  String get customerInfo;
+
+  /// Cancel button text
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Items count label
+  ///
+  /// In en, this message translates to:
+  /// **'{count} items'**
+  String itemsCount(int count);
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utilities/app_colors.dart';
-import '../../../../core/utilities/app_fonts.dart';
+import 'package:food_menu_app/l10n/app_localizations.dart';
 
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({super.key});
@@ -15,21 +14,19 @@ class SearchBarWidget extends StatelessWidget {
             child: Container(
               height: 48,
               decoration: BoxDecoration(
-                color: AppColors.surfaceLight, // Or a slightly darker shade if needed
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppColors.dividerLight),
+                border: Border.all(color: Theme.of(context).dividerColor),
               ),
               child: Row(
                 children: [
                   const SizedBox(width: 12),
-                  const Icon(Icons.search, color: AppColors.textSecondaryLight),
+                  Icon(Icons.search, color: Theme.of(context).textTheme.bodyMedium?.color),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Search for burgers, pizza, drinks...',
-                      style: AppFonts.styleRegular14(context).copyWith(
-                        color: AppColors.textSecondaryLight,
-                      ),
+                      AppLocalizations.of(context)!.searchHint,
+                      style: Theme.of(context).textTheme.bodyMedium,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -37,27 +34,7 @@ class SearchBarWidget extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 12),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: AppColors.orangeLight,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              children: [
-                const Icon(Icons.location_on_outlined, 
-                  color: AppColors.primaryLight, size: 18),
-                const SizedBox(width: 4),
-                Text(
-                  'Home',
-                  style: AppFonts.styleMedium16(context).copyWith(
-                    color: AppColors.primaryLight,
-                  ),
-                ),
-              ],
-            ),
-          ),
+
         ],
       ),
     );

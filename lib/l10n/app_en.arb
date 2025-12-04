@@ -23,5 +23,256 @@
   "arabic": "Arabic",
   "@arabic": {
     "description": "Arabic language"
+  },
+  "quantity": "Qty",
+  "@quantity": {
+    "description": "Quantity label"
+  },
+  "spiceLevel": "Spice level",
+  "@spiceLevel": {
+    "description": "Spice level section title"
+  },
+  "addOns": "Add-ons",
+  "@addOns": {
+    "description": "Add-ons section title"
+  },
+  "specialInstructions": "Special Instructions",
+  "@specialInstructions": {
+    "description": "Special instructions section title"
+  },
+  "specialInstructionsHint": "Add notes for the kitchen (no pickles, sauce on the side, etc.)",
+  "@specialInstructionsHint": {
+    "description": "Placeholder text for special instructions"
+  },
+  "applyTo": "Apply to:",
+  "@applyTo": {
+    "description": "Label for add-on quantity selector"
+  },
+  "ofPreposition": "of",
+  "@ofPreposition": {
+    "description": "Preposition for quantity (X of Y)"
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Total price label"
+  },
+  "item": "item",
+  "@item": {
+    "description": "Single item"
+  },
+  "items": "items",
+  "@items": {
+    "description": "Multiple items"
+  },
+  "addToCart": "Add to cart",
+  "@addToCart": {
+    "description": "Add to cart button text"
+  },
+  "addedToCart": "Added {count} {itemText} to cart!",
+  "@addedToCart": {
+    "description": "Success message when item added to cart",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "itemText": {
+        "type": "String"
+      }
+    }
+  },
+  "preparationTime": "min",
+  "@preparationTime": {
+    "description": "Minutes abbreviation for preparation time"
+  },
+  "searchHint": "Search for burgers, pizza, drinks...",
+  "@searchHint": {
+    "description": "Hint text for search bar"
+  },
+  "homeNav": "Home",
+  "@homeNav": {
+    "description": "Home navigation label"
+  },
+  "bestSellers": "Best Sellers",
+  "@bestSellers": {
+    "description": "Best sellers section title"
+  },
+  "seeAll": "See all",
+  "@seeAll": {
+    "description": "See all button text"
+  },
+  "categories": "Categories",
+  "@categories": {
+    "description": "Categories section title"
+  },
+  "browseAll": "Browse all",
+  "@browseAll": {
+    "description": "Browse all button text"
+  },
+  "categoryItems": "Category Items",
+  "@categoryItems": {
+    "description": "Category items section title"
+  },
+  "switchToList": "Switch to List View",
+  "@switchToList": {
+    "description": "Tooltip for switching to list view"
+  },
+  "switchToGrid": "Switch to Grid View",
+  "@switchToGrid": {
+    "description": "Tooltip for switching to grid view"
+  },
+  "todaysOffers": "Today's offers",
+  "@todaysOffers": {
+    "description": "Offers section title"
+  },
+  "viewAll": "View all",
+  "@viewAll": {
+    "description": "View all button text"
+  },
+  "limitedTime": "Limited time",
+  "@limitedTime": {
+    "description": "Limited time badge text"
+  },
+  "order": "Order",
+  "@order": {
+    "description": "Order button text"
+  },
+  "burgers": "Burgers",
+  "@burgers": {
+    "description": "Burgers category"
+  },
+  "pizza": "Pizza",
+  "@pizza": {
+    "description": "Pizza category"
+  },
+  "drinks": "Drinks",
+  "@drinks": {
+    "description": "Drinks category"
+  },
+  "desserts": "Desserts",
+  "@desserts": {
+    "description": "Desserts category"
+  },
+  "offerTitle": "Up to 40% off on\nBurgers",
+  "@offerTitle": {
+    "description": "Mock offer title"
+  },
+  "offerSubtitle": "Order 2 get free fries on\nselected combos.",
+  "@offerSubtitle": {
+    "description": "Mock offer subtitle"
+  },
+  "burger1Name": "Classic Double Burger",
+  "@burger1Name": { "description": "Burger 1 Name" },
+  "burger1Desc": "Beef patty, cheddar, lettuce, tomato & house sauce.",
+  "@burger1Desc": { "description": "Burger 1 Description" },
+  "burger2Name": "Spicy Chicken Burger",
+  "@burger2Name": { "description": "Burger 2 Name" },
+  "burger2Desc": "Crispy chicken, jalapeños, pepper jack cheese & chipotle mayo.",
+  "@burger2Desc": { "description": "Burger 2 Description" },
+  "burger3Name": "Veggie Delight",
+  "@burger3Name": { "description": "Burger 3 Name" },
+  "burger3Desc": "Plant-based patty, lettuce, tomato, pickles & special sauce.",
+  "@burger3Desc": { "description": "Burger 3 Description" },
+  "addonCheese": "Extra cheddar",
+  "@addonCheese": { "description": "Addon Cheese Name" },
+  "addonCheeseDesc": "Add one extra slice of cheese",
+  "@addonCheeseDesc": { "description": "Addon Cheese Description" },
+  "addonBacon": "Bacon",
+  "@addonBacon": { "description": "Addon Bacon Name" },
+  "addonBaconDesc": "Smoked crispy bacon strips",
+  "@addonBaconDesc": { "description": "Addon Bacon Description" },
+  "addonCombo": "Upgrade to combo",
+  "@addonCombo": { "description": "Addon Combo Name" },
+  "addonComboDesc": "Fries + soft drink",
+  "@addonComboDesc": { "description": "Addon Combo Description" },
+  "addonAvocado": "Avocado",
+  "@addonAvocado": { "description": "Addon Avocado Name" },
+  "addonAvocadoDesc": "Fresh sliced avocado",
+  "@addonAvocadoDesc": { "description": "Addon Avocado Description" },
+  "addonMushrooms": "Grilled mushrooms",
+  "@addonMushrooms": { "description": "Addon Mushrooms Name" },
+  "addonMushroomsDesc": "Sautéed portobello mushrooms",
+  "@addonMushroomsDesc": { "description": "Addon Mushrooms Description" },
+  "checkoutComingSoon": "Checkout functionality coming soon!",
+  "@checkoutComingSoon": { "description": "Checkout coming soon message" },
+  "cartEmpty": "Your cart is empty",
+  "@cartEmpty": { "description": "Empty cart message" },
+  "addItemsToStart": "Add items to get started",
+  "@addItemsToStart": { "description": "Add items hint" },
+  "continueShopping": "Continue Shopping",
+  "@continueShopping": { "description": "Continue shopping button text" },
+  "each": "each",
+  "@each": { "description": "Per item label" },
+  "summary": "Summary",
+  "@summary": { "description": "Cart summary title" },
+  "subtotal": "Subtotal",
+  "@subtotal": { "description": "Subtotal label" },
+  "deliveryFee": "Delivery fee",
+  "@deliveryFee": { "description": "Delivery fee label" },
+  "serviceFee": "Service fee",
+  "@serviceFee": { "description": "Service fee label" },
+  "checkout": "Checkout",
+  "@checkout": { "description": "Checkout button text" },
+  "editOrder": "Edit Order",
+  "@editOrder": { "description": "Edit order dialog title" },
+  "quantityLabel": "Quantity",
+  "@quantityLabel": { "description": "Quantity label full text" },
+  "selectAddonsHint": "Select how many items should have each add-on",
+  "@selectAddonsHint": { "description": "Hint for addon selection" },
+  "saveChanges": "Save Changes",
+  "@saveChanges": { "description": "Save changes button text" },
+  "checkoutTitle": "Checkout",
+  "@checkoutTitle": { "description": "Checkout page title" },
+  "deliveryInfo": "Delivery Information",
+  "@deliveryInfo": { "description": "Delivery information section title" },
+  "fullName": "Full Name",
+  "@fullName": { "description": "Full name field label" },
+  "fullNameHint": "Enter your full name",
+  "@fullNameHint": { "description": "Full name field hint" },
+  "phoneNumber": "Phone Number",
+  "@phoneNumber": { "description": "Phone number field label" },
+  "phoneNumberHint": "Enter your phone number",
+  "@phoneNumberHint": { "description": "Phone number field hint" },
+  "address": "Delivery Address",
+  "@address": { "description": "Address field label" },
+  "addressHint": "Enter your delivery address",
+  "@addressHint": { "description": "Address field hint" },
+  "deliveryNotes": "Delivery Notes (Optional)",
+  "@deliveryNotes": { "description": "Delivery notes field label" },
+  "deliveryNotesHint": "Add any special delivery instructions",
+  "@deliveryNotesHint": { "description": "Delivery notes field hint" },
+  "confirmOrder": "Confirm Order",
+  "@confirmOrder": { "description": "Confirm order button text" },
+  "orderSummary": "Order Summary",
+  "@orderSummary": { "description": "Order summary section title" },
+  "orderConfirmation": "Order Confirmation",
+  "@orderConfirmation": { "description": "Order confirmation dialog title" },
+  "confirmAndPay": "Confirm & Place Order",
+  "@confirmAndPay": { "description": "Final confirm button text" },
+  "orderSuccess": "Order Placed Successfully!",
+  "@orderSuccess": { "description": "Order success title" },
+  "orderSuccessMessage": "Your order has been placed and will be delivered soon.",
+  "@orderSuccessMessage": { "description": "Order success message" },
+  "orderNumber": "Order Number",
+  "@orderNumber": { "description": "Order number label" },
+  "backToHome": "Back to Home",
+  "@backToHome": { "description": "Back to home button text" },
+  "fieldRequired": "This field is required",
+  "@fieldRequired": { "description": "Required field validation message" },
+  "invalidPhone": "Please enter a valid phone number",
+  "@invalidPhone": { "description": "Invalid phone validation message" },
+  "reviewOrder": "Review Your Order",
+  "@reviewOrder": { "description": "Review order section title" },
+  "customerInfo": "Customer Information",
+  "@customerInfo": { "description": "Customer info section title" },
+  "cancel": "Cancel",
+  "@cancel": { "description": "Cancel button text" },
+  "itemsCount": "{count} items",
+  "@itemsCount": {
+    "description": "Items count label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

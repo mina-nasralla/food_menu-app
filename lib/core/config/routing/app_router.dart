@@ -3,6 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'route_constants.dart';
 import '../../../features/home/presentation/views/home_view.dart';
 import '../../../features/cart/presentation/views/cart_view.dart';
+import '../../../features/cart/presentation/views/checkout_view.dart';
+import '../../../features/cart/presentation/views/order_success_view.dart';
+import '../../../features/home/presentation/views/item_details_view.dart';
+import '../../../features/home/data/models/menu_item_model.dart';
 
 /// App router configuration using GoRouter
 /// 
@@ -26,6 +30,27 @@ class AppRouter {
         path: RouteConstants.cartPath,
         name: RouteConstants.cartName,
         builder: (context, state) => const CartView(),
+      ),
+      
+      GoRoute(
+        path: RouteConstants.itemDetailsPath,
+        name: RouteConstants.itemDetailsName,
+        builder: (context, state) {
+          final menuItem = state.extra as MenuItem;
+          return ItemDetailsView(menuItem: menuItem);
+        },
+      ),
+      
+      GoRoute(
+        path: RouteConstants.checkoutPath,
+        name: RouteConstants.checkoutName,
+        builder: (context, state) => const CheckoutView(),
+      ),
+      
+      GoRoute(
+        path: RouteConstants.orderSuccessPath,
+        name: RouteConstants.orderSuccessName,
+        builder: (context, state) => const OrderSuccessView(),
       ),
     ],
     

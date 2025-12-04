@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_menu_app/l10n/app_localizations.dart';
 import '../../../../core/utilities/app_colors.dart';
 import '../../../../core/utilities/app_fonts.dart';
 
@@ -7,6 +8,8 @@ class OffersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -16,13 +19,13 @@ class OffersSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Today's offers",
+                localizations.todaysOffers,
                 style: AppFonts.styleBold20(context),
               ),
               Text(
-                'View all',
+                localizations.viewAll,
                 style: AppFonts.styleMedium16(context).copyWith(
-                  color: AppColors.primaryLight,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ],
@@ -41,7 +44,7 @@ class OffersSection extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 16),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors.orangeLight,
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Stack(
@@ -53,21 +56,21 @@ class OffersSection extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFFFD180),
+                            color: Theme.of(context).colorScheme.secondaryContainer,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            'Limited time',
+                            localizations.limitedTime,
                             style: AppFonts.styleMedium16(context).copyWith(
                               fontSize: 12,
-                              color: Colors.brown,
+                              color: Theme.of(context).colorScheme.onSecondaryContainer,
                             ),
                           ),
                         ),
                         const SizedBox(height: 12),
                         Expanded( // Use Expanded to handle flexible space
                           child: Text(
-                            'Up to 40% off on\nBurgers',
+                            localizations.offerTitle,
                             style: AppFonts.styleBold20(context).copyWith(
                               height: 1.2,
                             ),
@@ -77,9 +80,9 @@ class OffersSection extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Order 2 get free fries on\nselected combos.',
+                          localizations.offerSubtitle,
                           style: AppFonts.styleRegular14(context).copyWith(
-                            color: AppColors.textSecondaryLight,
+                            color: Theme.of(context).textTheme.bodyMedium?.color,
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -88,14 +91,15 @@ class OffersSection extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primaryLight,
+                            backgroundColor: Theme.of(context).colorScheme.primary,
+                            foregroundColor: Theme.of(context).colorScheme.onPrimary,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
                             minimumSize: const Size(100, 36), // Compact button
                           ),
-                          child: const Text('Order', style: TextStyle(color: Colors.white)),
+                          child: Text(localizations.order, style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
                         ),
                       ],
                     ),

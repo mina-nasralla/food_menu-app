@@ -19,7 +19,8 @@ class SplashScreen extends StatelessWidget {
       duration: 3000,
       splashIconSize: 1000,
       animationDuration: const Duration(seconds: 3),
-      nextScreen: HomeView(),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      nextScreen: const HomeView(),
     );
   }
 
