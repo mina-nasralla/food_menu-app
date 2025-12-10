@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_menu_app/features/home/presentation/widgets/quantity_control_widget.dart';
+import 'package:food_menu_app/features/restaurant_menu/presentation/widgets/quantity_control_widget.dart';
 import 'package:food_menu_app/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/config/routing/route_constants.dart';
 import '../../../../core/utilities/app_colors.dart';
 import '../../../../core/utilities/app_fonts.dart';
-import '../cubits/home_cubit.dart';
-import '../cubits/home_state.dart';
-import '../utils/sample_menu_items.dart';
 import '../../data/models/menu_item_model.dart';
+import '../cubits/restaurant_menu_cubit.dart';
+import '../cubits/restaurant_menu_state.dart';
+import '../utils/sample_menu_items.dart';
 
 class CategoryItemsSection extends StatelessWidget {
   const CategoryItemsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocBuilder<RestaurantMenuCubit, RestaurantMenuState>(
       builder: (context, state) {
         // Responsive Grid Logic
         final screenWidth = MediaQuery.of(context).size.width;
@@ -27,7 +27,7 @@ class CategoryItemsSection extends StatelessWidget {
           6,
         ); // Min 2, Max 6 items per row
 
-        // Force grid view on tablets and larger screens
+        // Use list view on mobile by default, grid on tablets
         final effectiveIsGridView = isTabletOrLarger ? true : state.isGridView;
         final localizations = AppLocalizations.of(context)!;
 
@@ -35,7 +35,9 @@ class CategoryItemsSection extends StatelessWidget {
         final allItems = SampleMenuItems.getLocalizedItems(context);
         final filteredItems = state.selectedCategory == null
             ? allItems
-            : allItems.where((item) => item.category == state.selectedCategory).toList();
+            : allItems
+                  .where((item) => item.category == state.selectedCategory)
+                  .toList();
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,8 +48,8 @@ class CategoryItemsSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    state.selectedCategory == null 
-                        ? localizations.categoryItems 
+                    state.selectedCategory == null
+                        ? localizations.categoryItems
                         : _getCategoryName(context, state.selectedCategory!),
                     style: AppFonts.styleBold20(context),
                   ),
@@ -55,7 +57,7 @@ class CategoryItemsSection extends StatelessWidget {
                   if (!isTabletOrLarger)
                     IconButton(
                       onPressed: () {
-                        context.read<HomeCubit>().toggleViewMode();
+                        context.read<RestaurantMenuCubit>().toggleViewMode();
                       },
                       icon: Icon(
                         state.isGridView ? Icons.view_list : Icons.grid_view,
@@ -93,7 +95,11 @@ class CategoryItemsSection extends StatelessWidget {
                 ),
                 itemCount: filteredItems.length,
                 itemBuilder: (context, index) {
-                  return _buildItemCard(context, effectiveIsGridView, filteredItems[index]);
+                  return _buildItemCard(
+                    context,
+                    effectiveIsGridView,
+                    filteredItems[index],
+                  );
                 },
               ),
           ],
@@ -105,17 +111,22 @@ class CategoryItemsSection extends StatelessWidget {
   String _getCategoryName(BuildContext context, String categoryId) {
     final localizations = AppLocalizations.of(context)!;
     switch (categoryId) {
-      case 'burgers': return localizations.burgers;
-      case 'pizza': return localizations.pizza;
-      case 'drinks': return localizations.drinks;
-      case 'desserts': return localizations.desserts;
-      default: return localizations.categoryItems;
+      case 'burgers':
+        return localizations.burgers;
+      case 'pizza':
+        return localizations.pizza;
+      case 'drinks':
+        return localizations.drinks;
+      case 'desserts':
+        return localizations.desserts;
+      default:
+        return localizations.categoryItems;
     }
   }
 
   Widget _buildItemCard(BuildContext context, bool isGrid, MenuItem menuItem) {
     final localizations = AppLocalizations.of(context)!;
-    
+
     if (isGrid) {
       return GestureDetector(
         onTap: () {
@@ -165,9 +176,9 @@ class CategoryItemsSection extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       menuItem.description,
-                      style: AppFonts.styleRegular12(
-                        context,
-                      ).copyWith(color: Theme.of(context).textTheme.bodyMedium?.color),
+                      style: AppFonts.styleRegular12(context).copyWith(
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                      ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -188,7 +199,7 @@ class CategoryItemsSection extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          context.read<HomeCubit>().addToCart(
+                          context.read<RestaurantMenuCubit>().addToCart(
                             id: menuItem.id,
                             name: menuItem.name,
                             description: menuItem.description,
@@ -198,15 +209,25 @@ class CategoryItemsSection extends StatelessWidget {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text(localizations.addedToCart(1, menuItem.name)),
-                              backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.successDark : AppColors.success,
+                              content: Text(
+                                localizations.addedToCart(1, menuItem.name),
+                              ),
+                              backgroundColor:
+                                  Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? AppColors.successDark
+                                  : AppColors.success,
                               duration: const Duration(seconds: 1),
                             ),
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).colorScheme.primary,
-                          foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                          backgroundColor: Theme.of(
+                            context,
+                          ).colorScheme.primary,
+                          foregroundColor: Theme.of(
+                            context,
+                          ).colorScheme.onPrimary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -225,9 +246,12 @@ class CategoryItemsSection extends StatelessWidget {
                             Flexible(
                               child: Text(
                                 localizations.addToCart,
-                                style: AppFonts.styleRegular14(context).copyWith(
-                                  color: Theme.of(context).colorScheme.onPrimary,
-                                ),
+                                style: AppFonts.styleRegular14(context)
+                                    .copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onPrimary,
+                                    ),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -243,75 +267,84 @@ class CategoryItemsSection extends StatelessWidget {
         ),
       );
     } else {
-      return Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.08),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Image.asset(
-                      menuItem.imageUrl,
-                      width: 150,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
+      return GestureDetector(
+        onTap: () {
+          context.push(
+            RouteConstants.itemDetailsPath,
+            extra: menuItem,
+          );
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.08),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
               ),
-            ),
-            Expanded(
-              child: Padding(
+            ],
+          ),
+          child: Row(
+            children: [
+              Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(menuItem.name, style: AppFonts.styleBold16(context)),
-                    const SizedBox(height: 4),
-                    Text(
-                      menuItem.description,
-                      style: AppFonts.styleRegular12(
-                        context,
-                      ).copyWith(color: Theme.of(context).textTheme.bodyMedium?.color),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 8),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '\$${menuItem.basePrice.toStringAsFixed(2)}',
-                              style: AppFonts.styleBold18(context),
-                            ),
-                            QuantityControl(
-                              itemId: menuItem.id,
-                              isCompact: true,
-                            ),
-                          ],
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    menuItem.imageUrl,
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        menuItem.name,
+                        style: AppFonts.styleBold16(context),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 2),
+                      Flexible(
+                        child: Text(
+                          menuItem.description,
+                          style: AppFonts.styleRegular12(context).copyWith(
+                            color: Theme.of(context).textTheme.bodyMedium?.color,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 8),
-
-                        // Order button
-                        ElevatedButton(
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '\$${menuItem.basePrice.toStringAsFixed(2)}',
+                            style: AppFonts.styleBold16(context),
+                          ),
+                          QuantityControl(
+                            itemId: menuItem.id,
+                            isCompact: true,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 32,
+                        child: ElevatedButton(
                           onPressed: () {
-                            context.read<HomeCubit>().addToCart(
+                            context.read<RestaurantMenuCubit>().addToCart(
                               id: menuItem.id,
                               name: menuItem.name,
                               description: menuItem.description,
@@ -321,8 +354,13 @@ class CategoryItemsSection extends StatelessWidget {
                             );
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(localizations.addedToCart(1, menuItem.name)),
-                                backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.successDark : AppColors.success,
+                                content: Text(
+                                  localizations.addedToCart(1, menuItem.name),
+                                ),
+                                backgroundColor:
+                                    Theme.of(context).brightness == Brightness.dark
+                                        ? AppColors.successDark
+                                        : AppColors.success,
                                 duration: const Duration(seconds: 1),
                               ),
                             );
@@ -330,36 +368,26 @@ class CategoryItemsSection extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(context).colorScheme.primary,
                             foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 8,
+                              borderRadius: BorderRadius.circular(12),
                             ),
                             elevation: 0,
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.add, size: 18),
-                              const SizedBox(width: 8),
-                              Text(
-                                localizations.addToCart,
-                                style: AppFonts.styleRegular14(context).copyWith(
-                                  color: Theme.of(context).colorScheme.onPrimary,
-                                ),
-                              ),
-                            ],
+                          child: Text(
+                            localizations.order,
+                            style: AppFonts.styleRegular14(context).copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }

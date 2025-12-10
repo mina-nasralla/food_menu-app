@@ -1,28 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_menu_app/features/home/presentation/widgets/cart_floating_button.dart';
-import 'package:food_menu_app/features/home/presentation/widgets/home_app_bar.dart';
 
 import '../cubits/home_cubit.dart';
 import '../cubits/home_state.dart';
-import '../widgets/best_sellers_section.dart';
-import '../widgets/categories_section.dart';
-import '../widgets/category_items_section.dart';
-import '../widgets/offers_section.dart';
-import '../widgets/search_bar_widget.dart';
+import '../widgets/categories_list.dart';
+import '../widgets/home_app_bar.dart';
+import '../widgets/home_search_bar.dart';
+import '../widgets/nearest_restaurants_section.dart';
+import '../widgets/recently_viewed_section.dart';
+import '../widgets/recommended_section.dart';
 
-/// Home page view
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const _HomeViewBody();
-  }
-}
-
-class _HomeViewBody extends StatelessWidget {
-  const _HomeViewBody();
 
   @override
   Widget build(BuildContext context) {
@@ -30,27 +19,62 @@ class _HomeViewBody extends StatelessWidget {
       appBar: const HomeAppBar(),
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
-          return const SingleChildScrollView(
+          if (state.status == HomeStatus.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return  SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 16),
-                SearchBarWidget(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    children: [
+                      const Expanded(child: HomeSearchBar()),
+                      const SizedBox(width: 12),
+                      Container(
+                        height: 48,
+                        width: 48,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.05),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            // TODO: Implement location logic
+                          },
+                          icon: Icon(
+                            Icons.my_location,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(height: 24),
-                OffersSection(),
+                CategoriesList(),
                 SizedBox(height: 24),
-                BestSellersSection(),
+                RecommendedSection(),
                 SizedBox(height: 24),
-                CategoriesSection(),
+                RecentlyViewedSection(),
                 SizedBox(height: 24),
-                CategoryItemsSection(),
-                SizedBox(height: 80), // Space for FAB
+                NearestRestaurantsSection(),
+                SizedBox(height: 24),
               ],
             ),
           );
         },
       ),
-      floatingActionButton: const CartFloatingButton(),
     );
   }
 }

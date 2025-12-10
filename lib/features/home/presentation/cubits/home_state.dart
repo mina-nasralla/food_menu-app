@@ -1,57 +1,35 @@
 import 'package:equatable/equatable.dart';
-import '../../data/models/cart_item_model.dart';
-import '../../../cart/data/models/order_model.dart';
+import '../../data/models/restaurant_model.dart';
 
-/// Home state
+enum HomeStatus { initial, loading, success, failure }
+
 class HomeState extends Equatable {
-  final bool isLoading;
-  final bool isGridView;
-  final Map<String, int> itemQuantities;
-  final List<CartItem> cartItems;
-  final Order? lastOrder;
-  final bool isPlacingOrder;
-  final String? selectedCategory;
+  final HomeStatus status;
+  final List<Restaurant> recommended;
+  final List<Restaurant> nearest;
+  final List<Restaurant> recentlyViewed;
 
   const HomeState({
-    this.isLoading = false,
-    this.isGridView = true, // Default to grid view
-    this.itemQuantities = const {},
-    this.cartItems = const [],
-    this.lastOrder,
-    this.isPlacingOrder = false,
-    this.selectedCategory,
+    this.status = HomeStatus.initial,
+    this.recommended = const [],
+    this.nearest = const [],
+    this.recentlyViewed = const [],
   });
 
-  /// Calculate total cart price
-  double get totalCartPrice {
-    return cartItems.fold(0.0, (sum, item) => sum + item.totalPrice);
-  }
-
-  /// Get total number of items in cart
-  int get totalCartItems {
-    return cartItems.fold(0, (sum, item) => sum + item.quantity);
+  HomeState copyWith({
+    HomeStatus? status,
+    List<Restaurant>? recommended,
+    List<Restaurant>? nearest,
+    List<Restaurant>? recentlyViewed,
+  }) {
+    return HomeState(
+      status: status ?? this.status,
+      recommended: recommended ?? this.recommended,
+      nearest: nearest ?? this.nearest,
+      recentlyViewed: recentlyViewed ?? this.recentlyViewed,
+    );
   }
 
   @override
-  List<Object?> get props => [isLoading, isGridView, itemQuantities, cartItems, lastOrder, isPlacingOrder, selectedCategory];
-
-  HomeState copyWith({
-    bool? isLoading,
-    bool? isGridView,
-    Map<String, int>? itemQuantities,
-    List<CartItem>? cartItems,
-    Order? lastOrder,
-    bool? isPlacingOrder,
-    String? selectedCategory,
-  }) {
-    return HomeState(
-      isLoading: isLoading ?? this.isLoading,
-      isGridView: isGridView ?? this.isGridView,
-      itemQuantities: itemQuantities ?? this.itemQuantities,
-      cartItems: cartItems ?? this.cartItems,
-      lastOrder: lastOrder ?? this.lastOrder,
-      isPlacingOrder: isPlacingOrder ?? this.isPlacingOrder,
-      selectedCategory: selectedCategory ?? this.selectedCategory,
-    );
-  }
+  List<Object?> get props => [status, recommended, nearest, recentlyViewed];
 }

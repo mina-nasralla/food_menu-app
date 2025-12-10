@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_menu_app/features/restaurant_menu/data/models/addon_model.dart';
+import 'package:food_menu_app/features/restaurant_menu/data/models/cart_item_model.dart';
 import 'package:food_menu_app/l10n/app_localizations.dart';
 
-import '../../../../core/utilities/app_colors.dart';
 import '../../../../core/utilities/app_fonts.dart';
-import '../../../home/data/models/addon_model.dart';
-import '../../../home/data/models/cart_item_model.dart';
 import 'edit_cart_item_dialog.dart';
 
 /// Widget for displaying a single cart item with expandable details

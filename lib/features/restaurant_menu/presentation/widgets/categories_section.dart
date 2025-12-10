@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_menu_app/l10n/app_localizations.dart';
-import '../../../../core/utilities/app_colors.dart';
 import '../../../../core/utilities/app_fonts.dart';
-import '../cubits/home_cubit.dart';
-import '../cubits/home_state.dart';
+import '../cubits/restaurant_menu_cubit.dart';
+import '../cubits/restaurant_menu_state.dart';
 
 class CategoriesSection extends StatelessWidget {
   const CategoriesSection({super.key});
@@ -19,7 +18,7 @@ class CategoriesSection extends StatelessWidget {
       {'id': 'desserts', 'icon': Icons.icecream, 'name': localizations.desserts},
     ];
 
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocBuilder<RestaurantMenuCubit, RestaurantMenuState>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +34,7 @@ class CategoriesSection extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.read<HomeCubit>().selectCategory(null);
+                      context.read<RestaurantMenuCubit>().selectCategory(null);
                     },
                     child: Text(
                       localizations.browseAll,
@@ -61,7 +60,7 @@ class CategoriesSection extends StatelessWidget {
                   
                   return GestureDetector(
                     onTap: () {
-                      final cubit = context.read<HomeCubit>();
+                      final cubit = context.read<RestaurantMenuCubit>();
                       if (isSelected) {
                         cubit.selectCategory(null); // Deselect if already selected
                       } else {

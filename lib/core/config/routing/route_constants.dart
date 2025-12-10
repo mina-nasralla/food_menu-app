@@ -16,6 +16,12 @@ class RouteConstants {
   /// Home route name
   static const String homeName = 'home';
 
+  /// Restaurant Menu route path
+  static const String restaurantMenuPath = '/restaurant-menu';
+  
+  /// Restaurant Menu route name
+  static const String restaurantMenuName = 'restaurant-menu';
+
   // ============================================
   // Cart Route
   // ============================================

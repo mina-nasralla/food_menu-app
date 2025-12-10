@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../../home/data/models/cart_item_model.dart';
+import 'package:food_menu_app/features/restaurant_menu/data/models/cart_item_model.dart';
 
 /// Enum representing order status
 enum OrderStatus {

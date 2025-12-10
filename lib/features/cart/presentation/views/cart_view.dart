@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_menu_app/core/utilities/app_colors.dart';
 import 'package:food_menu_app/core/utilities/app_fonts.dart';
 import 'package:food_menu_app/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/config/routing/route_constants.dart';
-import '../../../home/presentation/cubits/home_cubit.dart';
-import '../../../home/presentation/cubits/home_state.dart';
+import '../../../restaurant_menu/presentation/cubits/restaurant_menu_cubit.dart';
+import '../../../restaurant_menu/presentation/cubits/restaurant_menu_state.dart';
 import '../widgets/cart_item_widget.dart';
 import '../widgets/cart_summary_widget.dart';
 
@@ -22,7 +21,7 @@ class CartView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(title: Text(l10n.cart), centerTitle: false),
-      body: BlocBuilder<HomeCubit, HomeState>(
+      body: BlocBuilder<RestaurantMenuCubit, RestaurantMenuState>(
         builder: (context, state) {
           if (state.cartItems.isEmpty) {
             return _buildEmptyCart(context);
@@ -41,37 +40,38 @@ class CartView extends StatelessWidget {
                       item: item,
                       onAddOnChanged: (addOn, isAdding) {
                         if (isAdding) {
-                          context.read<HomeCubit>().updateCartItemAddOn(
-                            item.id,
-                            addOn,
-                          );
+                          context
+                              .read<RestaurantMenuCubit>()
+                              .updateCartItemAddOn(item.id, addOn);
                         } else {
-                          context.read<HomeCubit>().removeAddOnFromCartItem(
-                            item.id,
-                            addOn,
-                          );
+                          context
+                              .read<RestaurantMenuCubit>()
+                              .removeAddOnFromCartItem(item.id, addOn);
                         }
                       },
                       onQuantityChanged: (newQuantity) {
-                        context.read<HomeCubit>().updateCartItemQuantity(
-                          item.id,
-                          newQuantity,
-                        );
+                        context
+                            .read<RestaurantMenuCubit>()
+                            .updateCartItemQuantity(item.id, newQuantity);
                       },
                       onEdit: (updatedItem) {
-                        context.read<HomeCubit>().updateCartItem(
+                        context.read<RestaurantMenuCubit>().updateCartItem(
                           itemId: updatedItem.id,
                           selectedAddOns: updatedItem.selectedAddOns,
                           spiceLevel: updatedItem.spiceLevel,
                           specialInstructions: updatedItem.specialInstructions,
                         );
-                        context.read<HomeCubit>().updateCartItemQuantity(
-                          updatedItem.id,
-                          updatedItem.quantity,
-                        );
+                        context
+                            .read<RestaurantMenuCubit>()
+                            .updateCartItemQuantity(
+                              updatedItem.id,
+                              updatedItem.quantity,
+                            );
                       },
                       onRemove: () {
-                        context.read<HomeCubit>().removeFromCart(item.id);
+                        context.read<RestaurantMenuCubit>().removeFromCart(
+                          item.id,
+                        );
                       },
                     );
                   },
@@ -101,7 +101,9 @@ class CartView extends StatelessWidget {
           Icon(
             Icons.shopping_cart_outlined,
             size: 120,
-            color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+            color: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.color?.withOpacity(0.5),
           ),
           const SizedBox(height: 24),
           Text(

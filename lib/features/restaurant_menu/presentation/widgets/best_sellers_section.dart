@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_menu_app/features/home/presentation/widgets/quantity_control_widget.dart';
+import 'package:food_menu_app/features/restaurant_menu/presentation/widgets/quantity_control_widget.dart';
 import 'package:food_menu_app/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/config/routing/route_constants.dart';
 import '../../../../core/utilities/app_colors.dart';
 import '../../../../core/utilities/app_fonts.dart';
-import '../cubits/home_cubit.dart';
+import '../cubits/restaurant_menu_cubit.dart';
 import '../utils/sample_menu_items.dart';
 
 class BestSellersSection extends StatelessWidget {
@@ -128,7 +128,7 @@ class BestSellersSection extends StatelessWidget {
                                 // Order button
                                 ElevatedButton(
                                   onPressed: () {
-                                    context.read<HomeCubit>().addToCart(
+                                    context.read<RestaurantMenuCubit>().addToCart(
                                       id: menuItem.id,
                                       name: menuItem.name,
                                       description: menuItem.description,

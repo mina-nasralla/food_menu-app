@@ -5,8 +5,8 @@ import 'package:food_menu_app/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/config/routing/route_constants.dart';
-import '../../../home/presentation/cubits/home_cubit.dart';
-import '../../../home/presentation/cubits/home_state.dart';
+import '../../../restaurant_menu/presentation/cubits/restaurant_menu_cubit.dart';
+import '../../../restaurant_menu/presentation/cubits/restaurant_menu_state.dart';
 
 /// Success screen shown after order is placed
 class OrderSuccessView extends StatelessWidget {
@@ -19,7 +19,7 @@ class OrderSuccessView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      body: BlocBuilder<HomeCubit, HomeState>(
+      body: BlocBuilder<RestaurantMenuCubit, RestaurantMenuState>(
         builder: (context, state) {
           final order = state.lastOrder;
 

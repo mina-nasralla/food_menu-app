@@ -4,7 +4,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../data/models/addon_model.dart';
 import '../../data/models/cart_item_model.dart';
 import '../../data/models/menu_item_model.dart';
-import '../cubits/home_cubit.dart';
+import '../cubits/restaurant_menu_cubit.dart';
 import '../widgets/item_details/item_quantity_selector.dart';
 import '../widgets/item_details/item_spice_level_selector.dart';
 import '../widgets/item_details/item_addons_section.dart';
@@ -110,7 +110,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
   /// Handle add to cart or update cart
   void _handleAddToCart() {
     final l10n = AppLocalizations.of(context)!;
-    final cubit = context.read<HomeCubit>();
+    final cubit = context.read<RestaurantMenuCubit>();
     
     if (_isEditMode) {
       // Update existing cart item

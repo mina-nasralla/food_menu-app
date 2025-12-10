@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'route_constants.dart';
-import '../../../features/home/presentation/views/home_view.dart';
+import '../../../features/restaurant_menu/presentation/views/restaurant_menu_view.dart';
 import '../../../features/cart/presentation/views/cart_view.dart';
 import '../../../features/cart/presentation/views/checkout_view.dart';
 import '../../../features/cart/presentation/views/order_success_view.dart';
-import '../../../features/home/presentation/views/item_details_view.dart';
-import '../../../features/home/data/models/menu_item_model.dart';
+import '../../../features/restaurant_menu/presentation/views/item_details_view.dart';
+import '../../../features/restaurant_menu/data/models/menu_item_model.dart';
+import '../../../features/home/presentation/views/home_view.dart';
 
 /// App router configuration using GoRouter
 /// 
@@ -24,6 +25,11 @@ class AppRouter {
         path: RouteConstants.homePath,
         name: RouteConstants.homeName,
         builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
+        path: RouteConstants.restaurantMenuPath,
+        name: RouteConstants.restaurantMenuName,
+        builder: (context, state) => const RestaurantMenuView(),
       ),
       
       GoRoute(

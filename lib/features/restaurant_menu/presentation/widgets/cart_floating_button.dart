@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/config/routing/route_constants.dart';
 import '../../../../core/utilities/app_colors.dart';
 import '../../../../core/utilities/app_fonts.dart';
-import '../cubits/home_cubit.dart';
-import '../cubits/home_state.dart';
+import '../cubits/restaurant_menu_cubit.dart';
+import '../cubits/restaurant_menu_state.dart';
 
 /// Floating Action Button for navigating to cart with badge showing total price
 class CartFloatingButton extends StatelessWidget {
@@ -16,7 +16,7 @@ class CartFloatingButton extends StatelessWidget {
     // Detect text direction
     final isRTL = Directionality.of(context) == TextDirection.rtl;
     
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocBuilder<RestaurantMenuCubit, RestaurantMenuState>(
       builder: (context, state) {
         final totalPrice = state.totalCartPrice;
         final hasItems = state.cartItems.isNotEmpty;

@@ -1,36 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_menu_app/core/config/locale/locale_state.dart';
+import 'package:food_menu_app/core/utilities/app_images.dart';
 import '../../../../core/config/locale/locale_cubit.dart';
-import '../../../../core/config/locale/locale_state.dart';
 import '../../../../core/config/theme/theme_cubit.dart';
 import '../../../../core/utilities/app_fonts.dart';
-import '../../../../core/utilities/app_images.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({super.key});
+/// Custom AppBar widget for restaurant menu page
+class RestaurantMenuAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const RestaurantMenuAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     
     return AppBar(
-      backgroundColor: theme.scaffoldBackgroundColor,
+      backgroundColor: Colors.transparent,
       elevation: 0,
-      centerTitle: false,
-      titleSpacing: 16,
       title: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(Assets.logo, height: 40),
+          Image.asset(Assets.logo, height: 32),
         ],
       ),
+      centerTitle: false,
       actions: [
-        // Language Toggle
+        // Language Toggle Button
         BlocBuilder<LocaleCubit, LocaleState>(
           builder: (context, state) {
             return TextButton(
               onPressed: () {
                 context.read<LocaleCubit>().toggleLanguage();
               },
+              style: TextButton.styleFrom(
+                foregroundColor: theme.colorScheme.onSurface,
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                minimumSize: const Size(48, 48),
+              ),
               child: Text(
                 state.languageCode == 'en' ? 'AR' : 'EN',
                 style: AppFonts.styleBold16(context).copyWith(
@@ -40,8 +46,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
-        
-        // Theme Toggle
+        // Dark Mode Toggle Button
         BlocBuilder<ThemeCubit, ThemeMode>(
           builder: (context, themeMode) {
             return IconButton(
@@ -50,40 +55,19 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
               icon: Icon(
                 themeMode == ThemeMode.dark ? Icons.light_mode : Icons.dark_mode,
-                color: theme.colorScheme.onSurface,
               ),
+              color: theme.colorScheme.onSurface,
+              tooltip: themeMode == ThemeMode.dark 
+                  ? 'Switch to Light Mode' 
+                  : 'Switch to Dark Mode',
             );
           },
         ),
-
-        // I am Chief Button
-        Padding(
-          padding: const EdgeInsets.only(right: 16.0, left: 8.0),
-          child: ElevatedButton(
-            onPressed: () {
-              // TODO: Navigate to Chef/Admin flow
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: theme.colorScheme.primary,
-              foregroundColor: theme.colorScheme.onPrimary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-            ),
-            child: Text(
-              'I\'am Chief',
-              style: AppFonts.styleRegular14(context).copyWith(
-                color: theme.colorScheme.onPrimary,
-              ),
-            ),
-          ),
-        ),
+        const SizedBox(width: 8),
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(70);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
-

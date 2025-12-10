@@ -5,8 +5,8 @@ import 'package:food_menu_app/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/config/routing/route_constants.dart';
-import '../../../home/presentation/cubits/home_cubit.dart';
-import '../../../home/presentation/cubits/home_state.dart';
+import '../../../restaurant_menu/presentation/cubits/restaurant_menu_cubit.dart';
+import '../../../restaurant_menu/presentation/cubits/restaurant_menu_state.dart';
 import '../../data/models/order_model.dart';
 
 /// Dialog for confirming order details before submission
@@ -22,8 +22,8 @@ class OrderConfirmationDialog extends StatelessWidget {
     this.deliveryNotes,
   });
 
-  void _placeOrder(BuildContext context, HomeState state) {
-    final cubit = context.read<HomeCubit>();
+  void _placeOrder(BuildContext context, RestaurantMenuState state) {
+    final cubit = context.read<RestaurantMenuCubit>();
     
     // Create order
     final order = Order(
@@ -54,7 +54,7 @@ class OrderConfirmationDialog extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocBuilder<RestaurantMenuCubit, RestaurantMenuState>(
       builder: (context, state) {
         return Dialog(
           shape: RoundedRectangleBorder(

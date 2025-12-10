@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utilities/app_colors.dart';
 import '../../../../core/utilities/app_fonts.dart';
-import '../cubits/home_cubit.dart';
+import '../cubits/restaurant_menu_cubit.dart';
 
 class QuantityControl extends StatelessWidget {
   final String itemId;
@@ -17,8 +17,8 @@ class QuantityControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<HomeCubit>();
-    final quantity = context.select<HomeCubit, int>(
+    final cubit = context.read<RestaurantMenuCubit>();
+    final quantity = context.select<RestaurantMenuCubit, int>(
       (cubit) => cubit.getItemQuantity(itemId),
     );
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_menu_app/features/home/data/models/addon_model.dart';
-import 'package:food_menu_app/features/home/data/models/menu_item_model.dart';
+import 'package:food_menu_app/features/restaurant_menu/data/models/addon_model.dart';
+import 'package:food_menu_app/features/restaurant_menu/data/models/menu_item_model.dart';
 import 'package:food_menu_app/l10n/app_localizations.dart';
 
 /// Sample menu items data

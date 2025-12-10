@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_menu_app/l10n/app_localizations.dart';
-import '../../../../core/utilities/app_colors.dart';
 import '../../../../core/utilities/app_fonts.dart';
 
 class OffersSection extends StatelessWidget {

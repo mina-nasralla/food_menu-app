@@ -4,8 +4,8 @@ import 'package:food_menu_app/core/utilities/app_fonts.dart';
 import 'package:food_menu_app/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../home/presentation/cubits/home_cubit.dart';
-import '../../../home/presentation/cubits/home_state.dart';
+import '../../../restaurant_menu/presentation/cubits/restaurant_menu_cubit.dart';
+import '../../../restaurant_menu/presentation/cubits/restaurant_menu_state.dart';
 import '../widgets/order_confirmation_dialog.dart';
 import 'map_picker_screen.dart';
 
@@ -152,7 +152,7 @@ class _CheckoutViewState extends State<CheckoutView> {
         title: Text(l10n.checkoutTitle),
         centerTitle: false,
       ),
-      body: BlocBuilder<HomeCubit, HomeState>(
+      body: BlocBuilder<RestaurantMenuCubit, RestaurantMenuState>(
         builder: (context, state) {
           return SingleChildScrollView(
             padding: const EdgeInsets.all(20),
