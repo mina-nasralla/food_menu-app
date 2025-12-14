@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubits/home_cubit.dart';
 import '../cubits/home_state.dart';
-import '../cubits/home_state.dart';
 import 'nearest_restaurant_card.dart';
 import 'section_header.dart';
 
@@ -16,7 +15,6 @@ class NearestRestaurantsSection extends StatelessWidget {
         if (state.nearest.isEmpty) return const SizedBox.shrink();
 
         // Calculate card width based on screen size to determine aspect ratio or crossAxis count
-        final screenWidth = MediaQuery.of(context).size.width;
         // Assume minimal width for 2 columns on mobile (e.g. 360px -> 180px each)
         // Adjust childAspectRatio to fit the new card height
         // Card height estimate: Image (140) + Padding(12) + Title(~24) + Spacing(8) + Row(~20) + Spacing(12) + Row(~24) + Padding(12) ~= 250-280

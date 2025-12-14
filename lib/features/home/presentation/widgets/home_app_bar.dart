@@ -5,6 +5,8 @@ import '../../../../core/config/locale/locale_state.dart';
 import '../../../../core/config/theme/theme_cubit.dart';
 import '../../../../core/utilities/app_fonts.dart';
 import '../../../../core/utilities/app_images.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/config/routing/route_constants.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -61,7 +63,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.only(right: 16.0, left: 8.0),
           child: ElevatedButton(
             onPressed: () {
-              // TODO: Navigate to Chef/Admin flow
+              context.push(RouteConstants.loginPath);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.colorScheme.primary,

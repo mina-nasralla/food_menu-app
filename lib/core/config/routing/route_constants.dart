@@ -63,6 +63,19 @@ class RouteConstants {
   static const String orderSuccessName = 'order-success';
 
   // ============================================
+  // Auth Routes
+  // ============================================
+  
+  static const String loginPath = '/auth/login';
+  static const String loginName = 'login';
+  
+  static const String registerPath = '/auth/register';
+  static const String registerName = 'register';
+  
+  static const String forgotPasswordPath = '/auth/forgot-password';
+  static const String forgotPasswordName = 'forgot-password';
+
+  // ============================================
   // Example Feature Routes (Add your routes here)
   // ============================================
   
@@ -72,4 +85,6 @@ class RouteConstants {
   // 
   // static const String menuDetailPath = '/menu/:id';
   // static const String menuDetailName = 'menu-detail';
+  static const String adminDashboardPath = '/admin-dashboard';
+  static const String adminDashboardName = 'admin-dashboard';
 }

@@ -8,6 +8,10 @@ import '../../../features/cart/presentation/views/order_success_view.dart';
 import '../../../features/restaurant_menu/presentation/views/item_details_view.dart';
 import '../../../features/restaurant_menu/data/models/menu_item_model.dart';
 import '../../../features/home/presentation/views/home_view.dart';
+import '../../../features/auth/presentation/views/login_view.dart';
+import '../../../features/auth/presentation/views/register_view.dart';
+import '../../../features/auth/presentation/views/forgot_password_view.dart';
+import '../../../features/admin_dashboard/presentation/views/admin_dashboard_view.dart';
 
 /// App router configuration using GoRouter
 /// 
@@ -57,6 +61,26 @@ class AppRouter {
         path: RouteConstants.orderSuccessPath,
         name: RouteConstants.orderSuccessName,
         builder: (context, state) => const OrderSuccessView(),
+      ),
+    GoRoute(
+        path: RouteConstants.loginPath,
+        name: RouteConstants.loginName,
+        builder: (context, state) => const LoginView(),
+      ),
+      GoRoute(
+        path: RouteConstants.registerPath,
+        name: RouteConstants.registerName,
+        builder: (context, state) => const RegisterView(),
+      ),
+      GoRoute(
+        path: RouteConstants.forgotPasswordPath,
+        name: RouteConstants.forgotPasswordName,
+        builder: (context, state) => const ForgotPasswordView(),
+      ),
+      GoRoute(
+        path: RouteConstants.adminDashboardPath,
+        name: RouteConstants.adminDashboardName,
+        builder: (context, state) => const AdminDashboardView(),
       ),
     ],
     
