@@ -23,6 +23,7 @@ class MenuItem extends Equatable {
   final List<AddOn> availableAddOns;
   final bool hasSpiceLevelOption;
   final int preparationTime; // in minutes
+  final bool isAvailable;
 
   const MenuItem({
     required this.id,
@@ -34,6 +35,7 @@ class MenuItem extends Equatable {
     this.availableAddOns = const [],
     this.hasSpiceLevelOption = false,
     this.preparationTime = 20,
+    this.isAvailable = true,
   });
 
   @override
@@ -47,6 +49,7 @@ class MenuItem extends Equatable {
         availableAddOns,
         hasSpiceLevelOption,
         preparationTime,
+        isAvailable,
       ];
 
   MenuItem copyWith({
@@ -59,6 +62,7 @@ class MenuItem extends Equatable {
     List<AddOn>? availableAddOns,
     bool? hasSpiceLevelOption,
     int? preparationTime,
+    bool? isAvailable,
   }) {
     return MenuItem(
       id: id ?? this.id,
@@ -70,6 +74,7 @@ class MenuItem extends Equatable {
       availableAddOns: availableAddOns ?? this.availableAddOns,
       hasSpiceLevelOption: hasSpiceLevelOption ?? this.hasSpiceLevelOption,
       preparationTime: preparationTime ?? this.preparationTime,
+      isAvailable: isAvailable ?? this.isAvailable,
     );
   }
 }

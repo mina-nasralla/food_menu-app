@@ -8,8 +8,9 @@ class OrdersInitial extends OrdersState {}
 
 class OrdersLoaded extends OrdersState {
   final List<OrderModel> orders;
+  final bool isAcceptingOrders;
   
-  OrdersLoaded(this.orders);
+  OrdersLoaded(this.orders, {this.isAcceptingOrders = true});
 }
 
 // Cubit
@@ -17,6 +18,7 @@ class OrdersCubit extends Cubit<OrdersState> {
   OrdersCubit() : super(OrdersInitial());
 
   List<OrderModel> _allOrders = [];
+  bool _isAcceptingOrders = true;
 
   void loadOrders() {
     // Dummy Data
@@ -50,14 +52,21 @@ class OrdersCubit extends Cubit<OrdersState> {
         timestamp: DateTime.now().subtract(const Duration(minutes: 60)),
       ),
     ];
-    emit(OrdersLoaded(List.from(_allOrders)));
+    emit(OrdersLoaded(List.from(_allOrders), isAcceptingOrders: _isAcceptingOrders));
+  }
+
+  void toggleAcceptingOrders() {
+    _isAcceptingOrders = !_isAcceptingOrders;
+    if (state is OrdersLoaded) {
+      emit(OrdersLoaded(List.from(_allOrders), isAcceptingOrders: _isAcceptingOrders));
+    }
   }
 
   void updateOrderStatus(String orderId, OrderStatus newStatus) {
     final index = _allOrders.indexWhere((o) => o.id == orderId);
     if (index != -1) {
       _allOrders[index] = _allOrders[index].copyWith(status: newStatus);
-      emit(OrdersLoaded(List.from(_allOrders)));
+      emit(OrdersLoaded(List.from(_allOrders), isAcceptingOrders: _isAcceptingOrders));
     }
   }
 }

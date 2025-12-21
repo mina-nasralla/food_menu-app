@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:food_menu_app/l10n/app_localizations.dart';
 import '../../../../core/config/routing/route_constants.dart';
-import '../../../../core/utilities/app_fonts.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -36,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chief Login'),
+        title: Text(AppLocalizations.of(context)!.chiefLogin),
       ),
       body: SafeArea(
         child: Center(
@@ -51,7 +51,7 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     const SizedBox(height: 32),
                     Text(
-                      'Welcome Back!',
+                      AppLocalizations.of(context)!.welcomeBack,
                       style: theme.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -59,7 +59,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Login to manage your restaurant',
+                      AppLocalizations.of(context)!.loginToManage,
                       style: theme.textTheme.bodyLarge?.copyWith(
                         color: Colors.grey,
                       ),
@@ -70,18 +70,18 @@ class _LoginViewState extends State<LoginView> {
                     // Email Field
                     TextFormField(
                       controller: _emailController,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.email,
                         prefixIcon: Icon(Icons.email_outlined),
                         border: OutlineInputBorder(),
                       ),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
+                          return AppLocalizations.of(context)!.pleaseEnterEmail;
                         }
                         if (!value.contains('@')) {
-                          return 'Please enter a valid email';
+                          return AppLocalizations.of(context)!.pleaseEnterValidEmail;
                         }
                         return null;
                       },
@@ -92,7 +92,7 @@ class _LoginViewState extends State<LoginView> {
                     TextFormField(
                       controller: _passwordController,
                       decoration: InputDecoration(
-                        labelText: 'Password',
+                        labelText: AppLocalizations.of(context)!.password,
                         prefixIcon: const Icon(Icons.lock_outline),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -109,7 +109,7 @@ class _LoginViewState extends State<LoginView> {
                       obscureText: !_isPasswordVisible,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
+                          return AppLocalizations.of(context)!.pleaseEnterPassword;
                         }
                         return null;
                       },
@@ -122,7 +122,7 @@ class _LoginViewState extends State<LoginView> {
                         onPressed: () {
                           context.push(RouteConstants.forgotPasswordPath);
                         },
-                        child: const Text('Forgot Password?'),
+                        child: Text(AppLocalizations.of(context)!.forgotPassword),
                       ),
                     ),
                     
@@ -139,8 +139,8 @@ class _LoginViewState extends State<LoginView> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: const Text(
-                        'Login',
+                      child: Text(
+                        AppLocalizations.of(context)!.login,
                         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -151,12 +151,12 @@ class _LoginViewState extends State<LoginView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account?"),
+                        Text(AppLocalizations.of(context)!.dontHaveAccount),
                         TextButton(
                           onPressed: () {
                             context.push(RouteConstants.registerPath);
                           },
-                          child: const Text('Register'),
+                          child: Text(AppLocalizations.of(context)!.register),
                         ),
                       ],
                     ),

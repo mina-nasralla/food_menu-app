@@ -500,12 +500,6 @@ abstract class AppLocalizations {
   /// **'Select how many items should have each add-on'**
   String get selectAddonsHint;
 
-  /// Save changes button text
-  ///
-  /// In en, this message translates to:
-  /// **'Save Changes'**
-  String get saveChanges;
-
   /// Checkout page title
   ///
   /// In en, this message translates to:
@@ -649,6 +643,810 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} items'**
   String itemsCount(int count);
+
+  /// Orders navigation label
+  ///
+  /// In en, this message translates to:
+  /// **'Orders'**
+  String get ordersNav;
+
+  /// Menu navigation label
+  ///
+  /// In en, this message translates to:
+  /// **'Menu'**
+  String get menuNav;
+
+  /// Statistics navigation label
+  ///
+  /// In en, this message translates to:
+  /// **'Stats'**
+  String get statsNav;
+
+  /// Profile navigation label
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileNav;
+
+  /// Pending order status
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get pending;
+
+  /// Accepted order status
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get accepted;
+
+  /// Preparing order status
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing'**
+  String get preparing;
+
+  /// Ready order status
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get ready;
+
+  /// Completed order status
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// Accept order button
+  ///
+  /// In en, this message translates to:
+  /// **'Accept Order'**
+  String get acceptOrder;
+
+  /// Reject button
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get reject;
+
+  /// Mark as ready button
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Ready'**
+  String get markAsReady;
+
+  /// Complete button
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get complete;
+
+  /// No orders message
+  ///
+  /// In en, this message translates to:
+  /// **'No orders yet'**
+  String get noOrders;
+
+  /// Items tab label
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get itemsTab;
+
+  /// Add-ons tab label
+  ///
+  /// In en, this message translates to:
+  /// **'Add-ons'**
+  String get addonsTab;
+
+  /// Offers tab label
+  ///
+  /// In en, this message translates to:
+  /// **'Offers'**
+  String get offersTab;
+
+  /// Create banner button
+  ///
+  /// In en, this message translates to:
+  /// **'Create Banner'**
+  String get createBanner;
+
+  /// Edit offer dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Offer'**
+  String get editOffer;
+
+  /// Headline field label
+  ///
+  /// In en, this message translates to:
+  /// **'Headline'**
+  String get headline;
+
+  /// Subtitle field label
+  ///
+  /// In en, this message translates to:
+  /// **'Subtitle/Description'**
+  String get subtitleDescription;
+
+  /// Price field label
+  ///
+  /// In en, this message translates to:
+  /// **'Price (if applicable)'**
+  String get priceIfApplicable;
+
+  /// Image URL field label
+  ///
+  /// In en, this message translates to:
+  /// **'Image URL'**
+  String get imageUrl;
+
+  /// Selected items label
+  ///
+  /// In en, this message translates to:
+  /// **'Selected Items'**
+  String get selectedItems;
+
+  /// Selected addons label
+  ///
+  /// In en, this message translates to:
+  /// **'Selected Addons'**
+  String get selectedAddons;
+
+  /// Estimated value label
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated Value'**
+  String get estimatedValue;
+
+  /// Use estimated button
+  ///
+  /// In en, this message translates to:
+  /// **'Use Estimated'**
+  String get useEstimated;
+
+  /// Final price label
+  ///
+  /// In en, this message translates to:
+  /// **'Final Price'**
+  String get finalPrice;
+
+  /// Pricing section label
+  ///
+  /// In en, this message translates to:
+  /// **'Pricing'**
+  String get pricing;
+
+  /// Header section label
+  ///
+  /// In en, this message translates to:
+  /// **'Header'**
+  String get header;
+
+  /// Visuals section label
+  ///
+  /// In en, this message translates to:
+  /// **'Visuals'**
+  String get visuals;
+
+  /// Included items section label
+  ///
+  /// In en, this message translates to:
+  /// **'Included Items'**
+  String get includedItems;
+
+  /// Active status
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// Inactive status
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
+
+  /// Delete button
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// Edit button
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// Save button
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// Create button
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get create;
+
+  /// Loading message
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// Add item button
+  ///
+  /// In en, this message translates to:
+  /// **'Add Item'**
+  String get addItem;
+
+  /// Item name field
+  ///
+  /// In en, this message translates to:
+  /// **'Item Name'**
+  String get itemName;
+
+  /// Description field
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// Price field
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get price;
+
+  /// Category field
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// Available addons label
+  ///
+  /// In en, this message translates to:
+  /// **'Available Add-ons'**
+  String get availableAddons;
+
+  /// Add addon button
+  ///
+  /// In en, this message translates to:
+  /// **'Add Add-on'**
+  String get addAddon;
+
+  /// Addon name field
+  ///
+  /// In en, this message translates to:
+  /// **'Add-on Name'**
+  String get addonName;
+
+  /// Total orders stat
+  ///
+  /// In en, this message translates to:
+  /// **'Total Orders'**
+  String get totalOrders;
+
+  /// Revenue stat
+  ///
+  /// In en, this message translates to:
+  /// **'Revenue'**
+  String get revenue;
+
+  /// Active offers stat
+  ///
+  /// In en, this message translates to:
+  /// **'Active Offers'**
+  String get activeOffers;
+
+  /// Menu items stat
+  ///
+  /// In en, this message translates to:
+  /// **'Menu Items'**
+  String get menuItems;
+
+  /// My restaurant title
+  ///
+  /// In en, this message translates to:
+  /// **'My Restaurant'**
+  String get myRestaurant;
+
+  /// Location label
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// Phone label
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// Website label
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get website;
+
+  /// Facebook label
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook'**
+  String get facebook;
+
+  /// WhatsApp label
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get whatsapp;
+
+  /// Total visitors label
+  ///
+  /// In en, this message translates to:
+  /// **'Total Visitors'**
+  String get totalVisitors;
+
+  /// Logout button
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// Chief login title
+  ///
+  /// In en, this message translates to:
+  /// **'Chief Login'**
+  String get chiefLogin;
+
+  /// Welcome back message
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back!'**
+  String get welcomeBack;
+
+  /// Login subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Login to manage your restaurant'**
+  String get loginToManage;
+
+  /// Email field
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// Password field
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// Forgot password link
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgotPassword;
+
+  /// Login button
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// Don't have account text
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get dontHaveAccount;
+
+  /// Register button
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
+
+  /// Email validation
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get pleaseEnterEmail;
+
+  /// Email validation
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email'**
+  String get pleaseEnterValidEmail;
+
+  /// Password validation
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get pleaseEnterPassword;
+
+  /// Use estimated short label
+  ///
+  /// In en, this message translates to:
+  /// **'Use Est'**
+  String get useEst;
+
+  /// Status when restaurant is accepting orders
+  ///
+  /// In en, this message translates to:
+  /// **'Accepting Orders'**
+  String get acceptingOrders;
+
+  /// Status when restaurant is not accepting orders
+  ///
+  /// In en, this message translates to:
+  /// **'Not Accepting Orders'**
+  String get notAcceptingOrders;
+
+  /// Toggle label for orders on
+  ///
+  /// In en, this message translates to:
+  /// **'Orders On'**
+  String get ordersOn;
+
+  /// Toggle label for orders off
+  ///
+  /// In en, this message translates to:
+  /// **'Orders Off'**
+  String get ordersOff;
+
+  /// No description provided for @workingHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Working Hours'**
+  String get workingHours;
+
+  /// No description provided for @day.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get day;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
+  /// No description provided for @operationalStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Operational Status'**
+  String get operationalStatus;
+
+  /// No description provided for @open.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get open;
+
+  /// No description provided for @closed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get closed;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// No description provided for @dark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get dark;
+
+  /// No description provided for @light.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get light;
+
+  /// No description provided for @statistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statistics;
+
+  /// No description provided for @totalSales.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Sales'**
+  String get totalSales;
+
+  /// No description provided for @visitors.
+  ///
+  /// In en, this message translates to:
+  /// **'Visitors'**
+  String get visitors;
+
+  /// No description provided for @avgOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg. Order'**
+  String get avgOrder;
+
+  /// No description provided for @yourSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Subscription'**
+  String get yourSubscription;
+
+  /// No description provided for @basicPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Plan'**
+  String get basicPlan;
+
+  /// No description provided for @activeStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get activeStatus;
+
+  /// No description provided for @expiresOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires on {date}'**
+  String expiresOn(Object date);
+
+  /// No description provided for @availablePlans.
+  ///
+  /// In en, this message translates to:
+  /// **'Available Plans'**
+  String get availablePlans;
+
+  /// No description provided for @proPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Pro Plan'**
+  String get proPlan;
+
+  /// No description provided for @enterprisePlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Enterprise Plan'**
+  String get enterprisePlan;
+
+  /// No description provided for @unlimitedItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited items, Priority Support'**
+  String get unlimitedItems;
+
+  /// No description provided for @customPlanDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Dedicated Manager, Scaling'**
+  String get customPlanDesc;
+
+  /// No description provided for @newOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get newOrder;
+
+  /// No description provided for @inProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get inProgress;
+
+  /// No description provided for @doneStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get doneStatus;
+
+  /// No description provided for @details.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get details;
+
+  /// No description provided for @orderDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Order #{id} Details'**
+  String orderDetails(Object id);
+
+  /// No description provided for @itemsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Items:'**
+  String get itemsLabel;
+
+  /// No description provided for @orderAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Accepted'**
+  String get orderAccepted;
+
+  /// No description provided for @viewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'View Details'**
+  String get viewDetails;
+
+  /// No description provided for @noOrdersFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders found'**
+  String get noOrdersFound;
+
+  /// No description provided for @editItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Item'**
+  String get editItem;
+
+  /// No description provided for @addNewItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Item'**
+  String get addNewItem;
+
+  /// No description provided for @selectAddons.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Addons:'**
+  String get selectAddons;
+
+  /// No description provided for @editAddon.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Addon'**
+  String get editAddon;
+
+  /// No description provided for @addNewAddon.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Addon'**
+  String get addNewAddon;
+
+  /// No description provided for @menuManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Menu Management'**
+  String get menuManagement;
+
+  /// No description provided for @acceptingOrdersDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Currently accepting and serving orders.'**
+  String get acceptingOrdersDesc;
+
+  /// No description provided for @notAcceptingOrdersDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop is currently closed to the public.'**
+  String get notAcceptingOrdersDesc;
+
+  /// No description provided for @updateProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Profile'**
+  String get updateProfile;
+
+  /// No description provided for @cuisineType.
+  ///
+  /// In en, this message translates to:
+  /// **'Cuisine Type'**
+  String get cuisineType;
+
+  /// No description provided for @facebookUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook URL'**
+  String get facebookUrl;
+
+  /// No description provided for @whatsappNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp Number'**
+  String get whatsappNumber;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
+
+  /// No description provided for @monday.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get monday;
+
+  /// No description provided for @tuesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get tuesday;
+
+  /// No description provided for @wednesday.
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get wednesday;
+
+  /// No description provided for @thursday.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get thursday;
+
+  /// No description provided for @friday.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get friday;
+
+  /// No description provided for @saturday.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get saturday;
+
+  /// No description provided for @sunday.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get sunday;
+
+  /// No description provided for @updateLogo.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Logo'**
+  String get updateLogo;
+
+  /// No description provided for @updateBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Banner'**
+  String get updateBanner;
+
+  /// No description provided for @editWorkingHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Working Hours'**
+  String get editWorkingHours;
+
+  /// No description provided for @openingTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening Time'**
+  String get openingTime;
+
+  /// No description provided for @closingTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing Time'**
+  String get closingTime;
+
+  /// No description provided for @isClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Is Closed'**
+  String get isClosed;
+
+  /// Save changes button text
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveChanges;
 }
 
 class _AppLocalizationsDelegate

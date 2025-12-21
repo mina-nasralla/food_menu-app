@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_menu_app/l10n/app_localizations.dart';
 import '../manager/menu_cubit.dart';
 import 'tabs/offers_tab.dart';
 import 'tabs/items_tab.dart';
@@ -16,13 +17,13 @@ class MenuManagementView extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Menu Management'),
+            title: Text(AppLocalizations.of(context)!.menuManagement),
             automaticallyImplyLeading: false,
-            bottom: const TabBar(
+            bottom: TabBar(
               tabs: [
-                Tab(text: 'Offers'),
-                Tab(text: 'Items'),
-                Tab(text: 'Addons'),
+                Tab(text: AppLocalizations.of(context)!.offersTab),
+                Tab(text: AppLocalizations.of(context)!.itemsTab),
+                Tab(text: AppLocalizations.of(context)!.addonsTab),
               ],
             ),
           ),

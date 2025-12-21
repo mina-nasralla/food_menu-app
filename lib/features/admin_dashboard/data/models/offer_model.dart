@@ -7,7 +7,8 @@ class OfferModel extends Equatable {
   final double price;
   final String? imageUrl;
   final bool isActive;
-  final String linkTo;
+  final List<String> linkedItemIds;
+  final List<String> selectedAddonIds;
 
   const OfferModel({
     required this.id,
@@ -16,12 +17,22 @@ class OfferModel extends Equatable {
     required this.price,
     this.imageUrl,
     this.isActive = true,
-    this.linkTo = 'Category',
+    this.linkedItemIds = const [],
+    this.selectedAddonIds = const [],
   });
 
   @override
-  List<Object?> get props => [id, title, description, price, imageUrl, isActive, linkTo];
-  
+  List<Object?> get props => [
+    id,
+    title,
+    description,
+    price,
+    imageUrl,
+    isActive,
+    linkedItemIds,
+    selectedAddonIds,
+  ];
+
   OfferModel copyWith({
     String? id,
     String? title,
@@ -29,7 +40,8 @@ class OfferModel extends Equatable {
     double? price,
     String? imageUrl,
     bool? isActive,
-    String? linkTo,
+    List<String>? linkedItemIds,
+    List<String>? selectedAddonIds,
   }) {
     return OfferModel(
       id: id ?? this.id,
@@ -38,7 +50,8 @@ class OfferModel extends Equatable {
       price: price ?? this.price,
       imageUrl: imageUrl ?? this.imageUrl,
       isActive: isActive ?? this.isActive,
-      linkTo: linkTo ?? this.linkTo,
+      linkedItemIds: linkedItemIds ?? this.linkedItemIds,
+      selectedAddonIds: selectedAddonIds ?? this.selectedAddonIds,
     );
   }
 }

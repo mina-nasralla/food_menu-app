@@ -7,6 +7,7 @@ class AddOn extends Equatable {
   final String description;
   final double price;
   final int quantity; // How many times this add-on is applied
+  final bool isAvailable;
 
   const AddOn({
     required this.id,
@@ -14,10 +15,11 @@ class AddOn extends Equatable {
     required this.description,
     required this.price,
     this.quantity = 1,
+    this.isAvailable = true,
   });
 
   @override
-  List<Object?> get props => [id, name, description, price, quantity];
+  List<Object?> get props => [id, name, description, price, quantity, isAvailable];
 
   AddOn copyWith({
     String? id,
@@ -25,6 +27,7 @@ class AddOn extends Equatable {
     String? description,
     double? price,
     int? quantity,
+    bool? isAvailable,
   }) {
     return AddOn(
       id: id ?? this.id,
@@ -32,6 +35,7 @@ class AddOn extends Equatable {
       description: description ?? this.description,
       price: price ?? this.price,
       quantity: quantity ?? this.quantity,
+      isAvailable: isAvailable ?? this.isAvailable,
     );
   }
 }

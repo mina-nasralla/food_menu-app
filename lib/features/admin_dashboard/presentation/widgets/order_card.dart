@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../data/models/order_model.dart';
+import 'package:food_menu_app/features/admin_dashboard/data/models/order_model.dart';
+import 'package:food_menu_app/l10n/app_localizations.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
 
 class OrderCard extends StatelessWidget {
   final OrderModel order;
@@ -16,10 +18,11 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
-    
+
     return Card(
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: EdgeInsets.zero, // Spacing handled by GridView
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -29,23 +32,37 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Order #${order.id}',
+                  l10n.orderDetails(order.id),
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                _buildStatusChip(theme),
+                _buildStatusChip(context, theme),
               ],
             ),
             const SizedBox(height: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: order.items.map((item) => Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: Text(item),
-              )).toList(),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: order.items
+                    .map(
+                      (item) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(
+                          '• $item',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodySmall,
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
+            const Divider(height: 1),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -57,11 +74,18 @@ class OrderCard extends StatelessWidget {
                       style: theme.textTheme.titleMedium?.copyWith(
                         color: theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
+                        fontSize: 14,
                       ),
                     ),
                     Text(
-                      timeago.format(order.timestamp),
-                      style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
+                      timeago.format(
+                        order.timestamp,
+                        locale: Localizations.localeOf(context).languageCode,
+                      ),
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.hintColor,
+                        fontSize: 10,
+                      ),
                     ),
                   ],
                 ),
@@ -74,21 +98,22 @@ class OrderCard extends StatelessWidget {
     );
   }
 
-  Widget _buildStatusChip(ThemeData theme) {
+  Widget _buildStatusChip(BuildContext context, ThemeData theme) {
+    final l10n = AppLocalizations.of(context)!;
     Color color;
     String label;
     switch (order.status) {
       case OrderStatus.newOrder:
         color = Colors.blue;
-        label = 'New';
+        label = l10n.newOrder;
         break;
       case OrderStatus.inProgress:
         color = Colors.orange;
-        label = 'In Progress';
+        label = l10n.inProgress;
         break;
       case OrderStatus.done:
         color = Colors.green;
-        label = 'Done';
+        label = l10n.doneStatus;
         break;
     }
 
@@ -110,13 +135,14 @@ class OrderCard extends StatelessWidget {
   }
 
   Widget _buildActionButtons(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     if (order.status == OrderStatus.newOrder) {
       return OutlinedButton(
         onPressed: onViewDetails,
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 24),
         ),
-        child: const Text('View Details'),
+        child: Text(l10n.viewDetails),
       );
     } else if (order.status == OrderStatus.inProgress) {
       return ElevatedButton(
@@ -126,7 +152,7 @@ class OrderCard extends StatelessWidget {
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 24),
         ),
-        child: const Text('Complete'),
+        child: Text(l10n.complete),
       );
     } else {
       return const SizedBox.shrink(); // No action for done orders

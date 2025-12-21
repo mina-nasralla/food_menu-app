@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_menu_app/l10n/app_localizations.dart';
+
+
 import '../../data/models/order_model.dart';
 import '../manager/orders_cubit.dart';
 import '../widgets/order_card.dart';
@@ -29,78 +32,159 @@ class _OrdersViewBodyState extends State<_OrdersViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Orders'),
-        automaticallyImplyLeading: false,
-      ),
-      body: Column(
-        children: [
-          OrdersFilterBar(
-            selectedFilter: _selectedFilter,
-            onFilterSelected: (status) {
-              setState(() {
-                _selectedFilter = status;
-              });
-            },
+    return BlocBuilder<OrdersCubit, OrdersState>(
+      builder: (context, state) {
+        bool isAccepting = true;
+        if (state is OrdersLoaded) {
+          isAccepting = state.isAcceptingOrders;
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(AppLocalizations.of(context)!.ordersNav),
+            automaticallyImplyLeading: false,
+            actions: [
+              Row(
+                children: [
+                  Text(
+                    isAccepting
+                        ? AppLocalizations.of(context)!.ordersOn
+                        : AppLocalizations.of(context)!.ordersOff,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: isAccepting ? Colors.green : Colors.red,
+                    ),
+                  ),
+                  Transform.scale(
+                    scale: 0.8,
+                    child: Switch(
+                      value: isAccepting,
+                      onChanged: (value) {
+                        context.read<OrdersCubit>().toggleAcceptingOrders();
+                      },
+                      activeColor: Colors.green,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          
-          Expanded(
-            child: BlocBuilder<OrdersCubit, OrdersState>(
-              builder: (context, state) {
-                if (state is OrdersLoaded) {
-                  final filteredOrders = state.orders
-                      .where((order) => order.status == _selectedFilter)
-                      .toList();
+          body: Column(
+            children: [
+              if (!isAccepting)
+                Container(
+                  width: double.infinity,
+                  color: Colors.red.shade100,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 16,
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.warning_amber_rounded,
+                        color: Colors.red,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        AppLocalizations.of(context)!.notAcceptingOrders,
+                        style: const TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              OrdersFilterBar(
+                selectedFilter: _selectedFilter,
+                onFilterSelected: (status) {
+                  setState(() {
+                    _selectedFilter = status;
+                  });
+                },
+              ),
 
-                  if (filteredOrders.isEmpty) {
-                    return _buildEmptyState();
-                  }
+              Expanded(
+                child: BlocBuilder<OrdersCubit, OrdersState>(
+                  builder: (context, state) {
+                    if (state is OrdersLoaded) {
+                      final filteredOrders = state.orders
+                          .where((order) => order.status == _selectedFilter)
+                          .toList();
 
-                  return ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: filteredOrders.length,
-                    itemBuilder: (context, index) {
-                      final order = filteredOrders[index];
-                      return OrderCard(
-                        order: order,
-                        onStatusChange: (newStatus) {
-                          context.read<OrdersCubit>().updateOrderStatus(order.id, newStatus);
+                      if (filteredOrders.isEmpty) {
+                        return _buildEmptyState(context);
+                      }
+
+                      return LayoutBuilder(
+                        builder: (context, constraints) {
+                          return Center(
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 1400),
+                              child: GridView.builder(
+                                padding: const EdgeInsets.all(16),
+                                gridDelegate:
+                                    const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 500,
+                                  mainAxisSpacing: 12,
+                                  crossAxisSpacing: 12,
+                                  mainAxisExtent: 180, // Adjust based on card height
+                                ),
+                                itemCount: filteredOrders.length,
+                                itemBuilder: (context, index) {
+                                  final order = filteredOrders[index];
+                                  return OrderCard(
+                                    order: order,
+                                    onStatusChange: (newStatus) {
+                                      context.read<OrdersCubit>().updateOrderStatus(
+                                        order.id,
+                                        newStatus,
+                                      );
+                                    },
+                                    onViewDetails: () =>
+                                        _showOrderDetailsDialog(context, order),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
                         },
-                        onViewDetails: () => _showOrderDetailsDialog(context, order),
                       );
-                    },
-                  );
-                }
-                return const Center(child: CircularProgressIndicator());
-              },
-            ),
+                    }
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
   void _showOrderDetailsDialog(BuildContext context, OrderModel order) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Order #${order.id} Details'),
+        title: Text(l10n.orderDetails(order.id)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Text(
-              'Items:',
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
+            Text(l10n.itemsLabel, style: Theme.of(context).textTheme.titleSmall),
             const SizedBox(height: 8),
             ...order.items.map((item) => Text('• $item')).toList(),
             const Divider(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Total:', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  '${l10n.total}:',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
                 Text(
                   '\$${order.total.toStringAsFixed(2)}',
                   style: TextStyle(
@@ -116,40 +200,45 @@ class _OrdersViewBodyState extends State<_OrdersViewBody> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
+            child: Text(l10n.cancel),
           ),
           ElevatedButton(
             onPressed: () {
-              context.read<OrdersCubit>().updateOrderStatus(order.id, OrderStatus.inProgress);
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Order Accepted')),
+              context.read<OrdersCubit>().updateOrderStatus(
+                order.id,
+                OrderStatus.inProgress,
               );
+              Navigator.pop(context);
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(l10n.orderAccepted)));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue,
               foregroundColor: Colors.white,
             ),
-            child: const Text('Accept Order'),
+            child: Text(l10n.acceptOrder),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildEmptyState() {
+  Widget _buildEmptyState(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.inbox_outlined, size: 64, color: Colors.grey.withOpacity(0.5)),
+          Icon(
+            Icons.inbox_outlined,
+            size: 64,
+            color: Theme.of(context).hintColor.withOpacity(0.5),
+          ),
           const SizedBox(height: 16),
           Text(
-            'No orders found',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey.withOpacity(0.8),
-            ),
+            l10n.noOrdersFound,
+            style: TextStyle(fontSize: 16, color: Theme.of(context).hintColor.withOpacity(0.8)),
           ),
         ],
       ),

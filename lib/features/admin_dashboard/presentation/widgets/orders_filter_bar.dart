@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_menu_app/l10n/app_localizations.dart';
 import '../../data/models/order_model.dart';
 
 class OrdersFilterBar extends StatelessWidget {
@@ -25,7 +26,7 @@ class OrdersFilterBar extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: FilterChip(
-              label: Text(_getLabel(filter)),
+              label: Text(_getLabel(context, filter)),
               selected: isSelected,
               onSelected: (selected) {
                 if (selected) {
@@ -47,14 +48,15 @@ class OrdersFilterBar extends StatelessWidget {
     );
   }
 
-  String _getLabel(OrderStatus status) {
+  String _getLabel(BuildContext context, OrderStatus status) {
+    final l10n = AppLocalizations.of(context)!;
     switch (status) {
       case OrderStatus.newOrder:
-        return 'New';
+        return l10n.newOrder;
       case OrderStatus.inProgress:
-        return 'In Progress';
+        return l10n.inProgress;
       case OrderStatus.done:
-        return 'Done';
+        return l10n.doneStatus;
     }
   }
 }

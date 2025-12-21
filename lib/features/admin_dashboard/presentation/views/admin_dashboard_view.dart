@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_menu_app/l10n/app_localizations.dart';
 import 'orders_view.dart';
 import 'menu_management_view.dart';
 import 'statistics_view.dart';
@@ -23,43 +24,101 @@ class _AdminDashboardViewState extends State<AdminDashboardView> {
 
   @override
   Widget build(BuildContext context) {
-    Theme.of(context);
-    
-    return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
-      ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (index) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        bool isWide = constraints.maxWidth >= 600;
+        
+        return Scaffold(
+          body: Row(
+            children: [
+              if (isWide)
+                _buildNavigationRail(context, isWide),
+              Expanded(
+                child: IndexedStack(
+                  index: _currentIndex,
+                  children: _screens,
+                ),
+              ),
+            ],
+          ),
+          bottomNavigationBar: !isWide
+              ? _buildNavigationBar(context)
+              : null,
+        );
+      },
+    );
+  }
+
+  Widget _buildNavigationRail(BuildContext context, bool isWide) {
+    final l10n = AppLocalizations.of(context)!;
+    return NavigationRail(
+      selectedIndex: _currentIndex,
+      onDestinationSelected: (index) {
+        if (_currentIndex != index) {
           setState(() {
             _currentIndex = index;
           });
-        },
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.receipt_long_outlined),
-            selectedIcon: Icon(Icons.receipt_long),
-            label: 'Orders',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.restaurant_menu_outlined),
-            selectedIcon: Icon(Icons.restaurant_menu),
-            label: 'Menu',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.bar_chart_outlined),
-            selectedIcon: Icon(Icons.bar_chart),
-            label: 'Stats',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.store_outlined),
-            selectedIcon: Icon(Icons.store),
-            label: 'Profile',
-          ),
-        ],
-      ),
+        }
+      },
+      labelType: NavigationRailLabelType.all,
+      destinations: [
+        NavigationRailDestination(
+          icon: const Icon(Icons.receipt_long_outlined),
+          selectedIcon: const Icon(Icons.receipt_long),
+          label: Text(l10n.ordersNav),
+        ),
+        NavigationRailDestination(
+          icon: const Icon(Icons.restaurant_menu_outlined),
+          selectedIcon: const Icon(Icons.restaurant_menu),
+          label: Text(l10n.menuNav),
+        ),
+        NavigationRailDestination(
+          icon: const Icon(Icons.bar_chart_outlined),
+          selectedIcon: const Icon(Icons.bar_chart),
+          label: Text(l10n.statsNav),
+        ),
+        NavigationRailDestination(
+          icon: const Icon(Icons.store_outlined),
+          selectedIcon: const Icon(Icons.store),
+          label: Text(l10n.profileNav),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildNavigationBar(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return NavigationBar(
+      selectedIndex: _currentIndex,
+      onDestinationSelected: (index) {
+        if (_currentIndex != index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        }
+      },
+      destinations: [
+        NavigationDestination(
+          icon: const Icon(Icons.receipt_long_outlined),
+          selectedIcon: const Icon(Icons.receipt_long),
+          label: l10n.ordersNav,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.restaurant_menu_outlined),
+          selectedIcon: const Icon(Icons.restaurant_menu),
+          label: l10n.menuNav,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.bar_chart_outlined),
+          selectedIcon: const Icon(Icons.bar_chart),
+          label: l10n.statsNav,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.store_outlined),
+          selectedIcon: const Icon(Icons.store),
+          label: l10n.profileNav,
+        ),
+      ],
     );
   }
 }
