@@ -36,6 +36,10 @@
   "@addOns": {
     "description": "Add-ons section title"
   },
+  "recommendedAddons": "Recommended Add-ons",
+  "@recommendedAddons": {
+    "description": "Recommended add-ons section title"
+  },
   "specialInstructions": "Special Instructions",
   "@specialInstructions": {
     "description": "Special instructions section title"
@@ -84,9 +88,17 @@
   "@preparationTime": {
     "description": "Minutes abbreviation for preparation time"
   },
-  "searchHint": "Search for burgers, pizza, drinks...",
+  "searchHint": "Search",
   "@searchHint": {
     "description": "Hint text for search bar"
+  },
+  "searchPlaceholder": "Search...",
+  "@searchPlaceholder": {
+    "description": "Generic search placeholder"
+  },
+  "noAddonsFound": "No addons found",
+  "@noAddonsFound": {
+    "description": "Message when no addons match search"
   },
   "homeNav": "Home",
   "@homeNav": {
@@ -485,5 +497,39 @@
   "openingTime": "Opening Time",
   "closingTime": "Closing Time",
   "isClosed": "Is Closed",
-  "saveChanges": "Save Changes"
+  "saveChanges": "Save Changes",
+  "directions": "Directions",
+  "call": "Call",
+  "deliveryTimeValue": "20-30 min",
+  "deliveryLabel": "Delivery",
+  "addressLabel": "Address",
+  "error": "Error",
+  "selectOnMap": "Select on Map",
+  "@selectOnMap": {
+    "description": "Option to select address on map"
+  },
+  "chooseLocationVisually": "Choose location visually",
+  "@chooseLocationVisually": {
+    "description": "Subtitle for select on map option"
+  },
+  "typeAddress": "Type Address",
+  "@typeAddress": {
+    "description": "Option to type address manually"
+  },
+  "enterAddressManually": "Enter address manually",
+  "@enterAddressManually": {
+    "description": "Subtitle for type address option"
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Confirm button text"
+  },
+  "name": "Name",
+  "@name": {
+    "description": "Customer name label"
+  },
+  "nameHint": "Enter your name",
+  "@nameHint": {
+    "description": "Customer name field hint"
+  }
 }

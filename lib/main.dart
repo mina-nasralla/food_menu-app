@@ -10,6 +10,9 @@ import 'core/config/locale/locale_state.dart';
 import 'core/config/theme/theme_cubit.dart';
 import 'features/home/presentation/cubits/home_cubit.dart';
 import 'features/restaurant_menu/presentation/cubits/restaurant_menu_cubit.dart';
+import 'features/restaurant_menu/presentation/cubits/restaurant_profile_cubit.dart';
+import 'features/restaurant_menu/presentation/cubits/category_cubit.dart';
+import 'features/restaurant_menu/presentation/cubits/menu_items_cubit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +29,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ThemeCubit()),
         BlocProvider(create: (context) => HomeCubit()..initialize()),
         BlocProvider(create: (context) => RestaurantMenuCubit()..initialize()),
+        BlocProvider(create: (context) => RestaurantProfileCubit()..fetchProfile()),
+        BlocProvider(create: (context) => CategoryCubit()..fetchCategories()),
+        BlocProvider(create: (context) => MenuItemsCubit()..fetchItems()),
       ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
         builder: (context, localeState) {
@@ -45,8 +51,8 @@ class MyApp extends StatelessWidget {
                       GlobalCupertinoLocalizations.delegate,
                     ],
                     supportedLocales: const [
-                      Locale('en'), // English
                       Locale('ar'), // Arabic
+                      Locale('en'), // English
                     ],
                     locale: Locale(localeState.languageCode),
                     

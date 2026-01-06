@@ -65,12 +65,35 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                 // Item Image
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    widget.item.imageUrl,
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
-                  ),
+                  child: widget.item.imageUrl.isNotEmpty
+                      ? Image.network(
+                          widget.item.imageUrl,
+                          width: 80,
+                          height: 80,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              width: 80,
+                              height: 80,
+                              color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2),
+                              child: Icon(
+                                Icons.fastfood,
+                                color: Theme.of(context).colorScheme.primary,
+                                size: 40,
+                              ),
+                            );
+                          },
+                        )
+                      : Container(
+                          width: 80,
+                          height: 80,
+                          color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2),
+                          child: Icon(
+                            Icons.fastfood,
+                            color: Theme.of(context).colorScheme.primary,
+                            size: 40,
+                          ),
+                        ),
                 ),
                 const SizedBox(width: 12),
                 

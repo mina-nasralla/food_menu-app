@@ -32,15 +32,15 @@ class OffersSection extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         SizedBox(
-          height: 200, // Increased height to prevent overflow
+          height: 250, // Further increased to prevent overflow in localized versions
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: 3,
             itemBuilder: (context, index) {
               return Container(
-                width: 320, // Slightly wider
-                margin: const EdgeInsets.only(right: 16),
+                width: 320,
+                margin: const EdgeInsetsDirectional.only(end: 16),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
@@ -67,7 +67,8 @@ class OffersSection extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        Expanded( // Use Expanded to handle flexible space
+                        SizedBox(
+                          width: 180, // Constrain width to avoid overlap with icon
                           child: Text(
                             localizations.offerTitle,
                             style: AppFonts.styleBold20(context).copyWith(
@@ -77,16 +78,19 @@ class OffersSection extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          localizations.offerSubtitle,
-                          style: AppFonts.styleRegular14(context).copyWith(
-                            color: Theme.of(context).textTheme.bodyMedium?.color,
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          width: 180, // Constrain width to avoid overlap with icon
+                          child: Text(
+                            localizations.offerSubtitle,
+                            style: AppFonts.styleRegular14(context).copyWith(
+                              color: Theme.of(context).textTheme.bodyMedium?.color,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 12),
+                        const Spacer(),
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
@@ -95,23 +99,22 @@ class OffersSection extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-                            minimumSize: const Size(100, 36), // Compact button
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            minimumSize: const Size(100, 36),
                           ),
                           child: Text(localizations.order, style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
                         ),
                       ],
                     ),
-                    Positioned(
-                      right: 0,
+                    PositionedDirectional(
+                      end: 0,
                       top: 20,
                       child: Container(
                         width: 100,
                         height: 100,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.grey, // Placeholder for image
-                          // image: DecorationImage(image: AssetImage('...'))
+                          color: Colors.grey.withOpacity(0.3),
                         ),
                         child: const Icon(Icons.fastfood, size: 40, color: Colors.white),
                       ),

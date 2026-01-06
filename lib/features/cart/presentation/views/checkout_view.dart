@@ -19,12 +19,14 @@ class CheckoutView extends StatefulWidget {
 
 class _CheckoutViewState extends State<CheckoutView> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
   final _phoneController = TextEditingController();
   final _notesController = TextEditingController();
   String? _selectedAddress;
 
   @override
   void dispose() {
+    _nameController.dispose();
     _phoneController.dispose();
     _notesController.dispose();
     super.dispose();
@@ -44,15 +46,15 @@ class _CheckoutViewState extends State<CheckoutView> {
           children: [
             ListTile(
               leading: Icon(Icons.map, color: theme.colorScheme.primary),
-              title: const Text('Select on Map'),
-              subtitle: const Text('Choose location visually'),
+              title: Text(l10n.selectOnMap),
+              subtitle: Text(l10n.chooseLocationVisually),
               onTap: () => Navigator.pop(context, 'map'),
             ),
             const Divider(),
             ListTile(
               leading: Icon(Icons.edit, color: theme.colorScheme.primary),
-              title: const Text('Type Address'),
-              subtitle: const Text('Enter address manually'),
+              title: Text(l10n.typeAddress),
+              subtitle: Text(l10n.enterAddressManually),
               onTap: () => Navigator.pop(context, 'manual'),
             ),
           ],
@@ -78,7 +80,11 @@ class _CheckoutViewState extends State<CheckoutView> {
       }
     } else if (choice == 'manual') {
       // Show text input dialog
-      final controller = TextEditingController(text: _selectedAddress);
+      // Use existing address only if it's not a coordinate string
+      final initialText = _selectedAddress != null && !_selectedAddress!.startsWith('Lat:') 
+          ? _selectedAddress 
+          : '';
+      final controller = TextEditingController(text: initialText);
       final result = await showDialog<String>(
         context: context,
         builder: (context) => AlertDialog(
@@ -99,7 +105,7 @@ class _CheckoutViewState extends State<CheckoutView> {
             ),
             ElevatedButton(
               onPressed: () => Navigator.pop(context, controller.text),
-              child: const Text('Confirm'),
+              child: Text(l10n.confirm),
             ),
           ],
         ),
@@ -129,6 +135,7 @@ class _CheckoutViewState extends State<CheckoutView> {
       showDialog(
         context: context,
         builder: (context) => OrderConfirmationDialog(
+          name: _nameController.text,
           phoneNumber: _phoneController.text,
           address: _selectedAddress!,
           deliveryNotes: _notesController.text.isEmpty ? null : _notesController.text,
@@ -167,6 +174,23 @@ class _CheckoutViewState extends State<CheckoutView> {
                     style: AppFonts.styleBold20(context),
                   ),
                   const SizedBox(height: 24),
+
+                  // Name Field
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      labelText: l10n.name,
+                      hintText: l10n.nameHint,
+                      prefixIcon: const Icon(Icons.person_outline),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return l10n.fieldRequired;
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16),
 
                   // Phone Number Field
                   TextFormField(
@@ -284,23 +308,12 @@ class _CheckoutViewState extends State<CheckoutView> {
                           l10n.subtotal,
                           '\$${state.totalCartPrice.toStringAsFixed(2)}',
                         ),
-                        const SizedBox(height: 8),
-                        _buildSummaryRow(
-                          context,
-                          l10n.deliveryFee,
-                          '\$1.99',
-                        ),
-                        const SizedBox(height: 8),
-                        _buildSummaryRow(
-                          context,
-                          l10n.serviceFee,
-                          '\$0.30',
-                        ),
+
                         const Divider(height: 24),
                         _buildSummaryRow(
                           context,
                           l10n.total,
-                          '\$${(state.totalCartPrice + 1.99 + 0.30).toStringAsFixed(2)}',
+                          '\$${state.totalCartPrice.toStringAsFixed(2)}',
                           isBold: true,
                         ),
                       ],

@@ -3,7 +3,7 @@ import 'locale_state.dart';
 
 /// Cubit for managing app locale/language
 class LocaleCubit extends Cubit<LocaleState> {
-  LocaleCubit() : super(const LocaleState(languageCode: 'en'));
+  LocaleCubit() : super(const LocaleState(languageCode: 'ar'));
 
   /// Toggle between English and Arabic
   void toggleLanguage() {

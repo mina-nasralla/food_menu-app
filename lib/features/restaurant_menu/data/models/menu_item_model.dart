@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import 'addon_model.dart';
 
 /// Spice level options
@@ -9,72 +10,110 @@ enum SpiceLevel {
   hot('Hot');
 
   final String label;
+
   const SpiceLevel(this.label);
 }
 
-/// Model representing a menu item
 class MenuItem extends Equatable {
   final String id;
   final String name;
   final String description;
-  final double basePrice;
-  final String imageUrl;
-  final String category; // 'burgers', 'pizza', 'drinks', 'desserts'
+  final double price;
+  final double discount;
+  final String? imageUrl;
+  final String? categoryName;
+  final String categoryId;
+  final bool isAvailable;
   final List<AddOn> availableAddOns;
   final bool hasSpiceLevelOption;
-  final int preparationTime; // in minutes
-  final bool isAvailable;
+  final int preparationTime;
+  final DateTime createdAt;
 
   const MenuItem({
     required this.id,
     required this.name,
     required this.description,
-    required this.basePrice,
-    required this.imageUrl,
-    required this.category,
+    required this.price,
+    this.discount = 0.0,
+    this.imageUrl,
+    this.categoryName,
+    required this.categoryId,
+    this.isAvailable = true,
     this.availableAddOns = const [],
     this.hasSpiceLevelOption = false,
     this.preparationTime = 20,
-    this.isAvailable = true,
+    required this.createdAt,
   });
+
+  factory MenuItem.fromJson(Map<String, dynamic> json) {
+    return MenuItem(
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      description: json['description'] ?? '',
+      price: (json['price'] as num?)?.toDouble() ?? 0.0,
+      discount: (json['discount'] as num?)?.toDouble() ?? 0.0,
+      imageUrl: json['image_url'],
+      categoryName: json['category'],
+      categoryId: json['category_id'] ?? '',
+      isAvailable: json['is_available'] ?? true,
+      availableAddOns: const [],
+      // Will be handled in a separate integration if needed
+      hasSpiceLevelOption: false,
+      preparationTime: 20,
+      createdAt: DateTime.parse(
+        json['created_at'] ?? DateTime.now().toIso8601String(),
+      ),
+    );
+  }
+
+  double get finalPrice => price - discount;
 
   @override
   List<Object?> get props => [
-        id,
-        name,
-        description,
-        basePrice,
-        imageUrl,
-        category,
-        availableAddOns,
-        hasSpiceLevelOption,
-        preparationTime,
-        isAvailable,
-      ];
+    id,
+    name,
+    description,
+    price,
+    discount,
+    imageUrl,
+    categoryName,
+    categoryId,
+    isAvailable,
+    availableAddOns,
+    hasSpiceLevelOption,
+    preparationTime,
+    createdAt,
+  ];
 
   MenuItem copyWith({
     String? id,
     String? name,
     String? description,
-    double? basePrice,
+    double? price,
+    double? discount,
     String? imageUrl,
-    String? category,
+    String? categoryName,
+    String? categoryId,
+    bool? isAvailable,
     List<AddOn>? availableAddOns,
     bool? hasSpiceLevelOption,
     int? preparationTime,
-    bool? isAvailable,
+    DateTime? createdAt,
   }) {
     return MenuItem(
       id: id ?? this.id,
       name: name ?? this.name,
       description: description ?? this.description,
-      basePrice: basePrice ?? this.basePrice,
+      price: price ?? this.price,
+      discount: discount ?? this.discount,
       imageUrl: imageUrl ?? this.imageUrl,
-      category: category ?? this.category,
+      categoryName: categoryName ?? this.categoryName,
+      categoryId: categoryId ?? this.categoryId,
+      isAvailable: isAvailable ?? this.isAvailable,
       availableAddOns: availableAddOns ?? this.availableAddOns,
       hasSpiceLevelOption: hasSpiceLevelOption ?? this.hasSpiceLevelOption,
       preparationTime: preparationTime ?? this.preparationTime,
-      isAvailable: isAvailable ?? this.isAvailable,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 }

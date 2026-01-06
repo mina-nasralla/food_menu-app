@@ -11,42 +11,47 @@ import '../../data/models/order_model.dart';
 
 /// Dialog for confirming order details before submission
 class OrderConfirmationDialog extends StatelessWidget {
+  final String name;
   final String phoneNumber;
   final String address;
   final String? deliveryNotes;
 
   const OrderConfirmationDialog({
     super.key,
+    required this.name,
     required this.phoneNumber,
     required this.address,
     this.deliveryNotes,
   });
 
-  void _placeOrder(BuildContext context, RestaurantMenuState state) {
+  Future<void> _placeOrder(BuildContext context, RestaurantMenuState state) async {
     final cubit = context.read<RestaurantMenuCubit>();
     
-    // Create order
-    final order = Order(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      items: state.cartItems,
-      phoneNumber: phoneNumber,
-      address: address,
-      deliveryNotes: deliveryNotes,
-      subtotal: state.totalCartPrice,
-      deliveryFee: 1.99,
-      serviceFee: 0.30,
-      total: state.totalCartPrice + 1.99 + 0.30,
-      orderDate: DateTime.now(),
-    );
+    try {
+      await cubit.placeOrder(
+        name: name,
+        phone: phoneNumber,
+        address: address,
+        notes: deliveryNotes,
+      );
 
-    // Place order
-    cubit.placeOrder(order);
+      if (context.mounted) {
+        // Close dialog
+        Navigator.of(context).pop();
 
-    // Close dialog
-    Navigator.of(context).pop();
-
-    // Navigate to success screen
-    context.go(RouteConstants.orderSuccessPath);
+        // Navigate to success screen
+        context.go(RouteConstants.orderSuccessPath);
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to place order: $e'),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -93,6 +98,8 @@ class OrderConfirmationDialog extends StatelessWidget {
                     style: AppFonts.styleBold16(context),
                   ),
                   const SizedBox(height: 12),
+                  _buildInfoRow(context, Icons.person, l10n.name, name),
+                  const SizedBox(height: 8),
                   _buildInfoRow(context, Icons.phone, l10n.phoneNumber, phoneNumber),
                   const SizedBox(height: 8),
                   _buildInfoRow(context, Icons.location_on, l10n.address, address),
@@ -128,23 +135,11 @@ class OrderConfirmationDialog extends StatelessWidget {
                           l10n.subtotal,
                           '\$${state.totalCartPrice.toStringAsFixed(2)}',
                         ),
-                        const SizedBox(height: 8),
-                        _buildSummaryRow(
-                          context,
-                          l10n.deliveryFee,
-                          '\$1.99',
-                        ),
-                        const SizedBox(height: 8),
-                        _buildSummaryRow(
-                          context,
-                          l10n.serviceFee,
-                          '\$0.30',
-                        ),
                         const Divider(height: 24),
                         _buildSummaryRow(
                           context,
                           l10n.total,
-                          '\$${(state.totalCartPrice + 1.99 + 0.30).toStringAsFixed(2)}',
+                          '\$${state.totalCartPrice.toStringAsFixed(2)}',
                           isBold: true,
                         ),
                       ],

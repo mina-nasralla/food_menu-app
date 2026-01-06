@@ -152,6 +152,12 @@ abstract class AppLocalizations {
   /// **'Add-ons'**
   String get addOns;
 
+  /// Recommended add-ons section title
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended Add-ons'**
+  String get recommendedAddons;
+
   /// Special instructions section title
   ///
   /// In en, this message translates to:
@@ -215,8 +221,20 @@ abstract class AppLocalizations {
   /// Hint text for search bar
   ///
   /// In en, this message translates to:
-  /// **'Search for burgers, pizza, drinks...'**
+  /// **'Search'**
   String get searchHint;
+
+  /// Generic search placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Search...'**
+  String get searchPlaceholder;
+
+  /// Message when no addons match search
+  ///
+  /// In en, this message translates to:
+  /// **'No addons found'**
+  String get noAddonsFound;
 
   /// Home navigation label
   ///
@@ -1447,6 +1465,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save Changes'**
   String get saveChanges;
+
+  /// No description provided for @directions.
+  ///
+  /// In en, this message translates to:
+  /// **'Directions'**
+  String get directions;
+
+  /// No description provided for @call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get call;
+
+  /// No description provided for @deliveryTimeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'20-30 min'**
+  String get deliveryTimeValue;
+
+  /// No description provided for @deliveryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery'**
+  String get deliveryLabel;
+
+  /// No description provided for @addressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get addressLabel;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// Option to select address on map
+  ///
+  /// In en, this message translates to:
+  /// **'Select on Map'**
+  String get selectOnMap;
+
+  /// Subtitle for select on map option
+  ///
+  /// In en, this message translates to:
+  /// **'Choose location visually'**
+  String get chooseLocationVisually;
+
+  /// Option to type address manually
+  ///
+  /// In en, this message translates to:
+  /// **'Type Address'**
+  String get typeAddress;
+
+  /// Subtitle for type address option
+  ///
+  /// In en, this message translates to:
+  /// **'Enter address manually'**
+  String get enterAddressManually;
+
+  /// Confirm button text
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// Customer name label
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// Customer name field hint
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get nameHint;
 }
 
 class _AppLocalizationsDelegate

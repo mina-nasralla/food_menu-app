@@ -1,17 +1,37 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_menu_app/features/restaurant_menu/data/models/addon_model.dart';
 import 'package:food_menu_app/features/restaurant_menu/data/models/menu_item_model.dart';
+import 'package:food_menu_app/features/restaurant_menu/data/repositories/restaurant_repository.dart';
 import '../../data/models/cart_item_model.dart';
 import '../../../cart/data/models/order_model.dart';
 import 'restaurant_menu_state.dart';
 
 /// Cubit for managing restaurant menu logic
 class RestaurantMenuCubit extends Cubit<RestaurantMenuState> {
-  RestaurantMenuCubit() : super(const RestaurantMenuState());
+  final RestaurantRepository _repository;
+
+  RestaurantMenuCubit({RestaurantRepository? repository})
+      : _repository = repository ?? RestaurantRepository(),
+        super(const RestaurantMenuState());
 
   /// Initialize home page
   void initialize() {
-    // Add initialization logic here when needed
+    fetchAddons();
+  }
+
+  /// Fetch addons from Supabase
+  Future<void> fetchAddons() async {
+    emit(state.copyWith(isLoadingAddons: true));
+    try {
+      final addons = await _repository.getAddons();
+      emit(state.copyWith(
+        addons: addons,
+        isLoadingAddons: false,
+      ));
+    } catch (e) {
+      emit(state.copyWith(isLoadingAddons: false));
+      // In a real app, you might want to emit an error state or show a snackbar
+    }
   }
 
   /// Toggle between grid and list view
@@ -19,9 +39,19 @@ class RestaurantMenuCubit extends Cubit<RestaurantMenuState> {
     emit(state.copyWith(isGridView: !state.isGridView));
   }
 
+  /// Update addon search term
+  void setAddonSearchTerm(String term) {
+    emit(state.copyWith(addonSearchTerm: term));
+  }
+
+  /// Update menu search term
+  void setMenuSearchTerm(String term) {
+    emit(state.copyWith(menuSearchTerm: term));
+  }
+
   /// Get quantity for a specific item
   int getItemQuantity(String itemId) {
-    return state.itemQuantities[itemId] ?? 1;
+    return state.itemQuantities[itemId] ?? 0;
   }
 
   /// Increment item quantity
@@ -35,7 +65,7 @@ class RestaurantMenuCubit extends Cubit<RestaurantMenuState> {
   /// Decrement item quantity
   void decrementItemQuantity(String itemId) {
     final currentQuantity = getItemQuantity(itemId);
-    if (currentQuantity > 1) {
+    if (currentQuantity > 0) {
       final updatedQuantities = Map<String, int>.from(state.itemQuantities);
       updatedQuantities[itemId] = currentQuantity - 1;
       emit(state.copyWith(itemQuantities: updatedQuantities));
@@ -54,7 +84,7 @@ class RestaurantMenuCubit extends Cubit<RestaurantMenuState> {
     SpiceLevel? spiceLevel,
     String? specialInstructions,
   }) {
-    final quantity = getItemQuantity(id);
+    final quantity = state.itemQuantities[id] ?? 1;
     final updatedCart = List<CartItem>.from(state.cartItems);
     
     // Check if item already exists in cart with same customization
@@ -86,10 +116,57 @@ class RestaurantMenuCubit extends Cubit<RestaurantMenuState> {
       ));
     }
     
-    // Reset the quantity selector for this item back to 1
+    // Reset the quantity selector for this item back to 0 (or 1 depending on UX)
     final updatedQuantities = Map<String, int>.from(state.itemQuantities);
-    updatedQuantities[id] = 1;
+    updatedQuantities[id] = 0;
     
+    emit(state.copyWith(
+      cartItems: updatedCart,
+      itemQuantities: updatedQuantities,
+    ));
+  }
+  
+  /// Add add-on as a standalone item to cart
+  void addAddonToCart(AddOn addon) {
+    final quantity = getItemQuantity(addon.id);
+    if (quantity == 0) return;
+
+    final updatedCart = List<CartItem>.from(state.cartItems);
+    
+    // Convert AddOn to a dummy MenuItem for CartItem compatibility
+    final dummyMenuItem = MenuItem(
+      id: addon.id,
+      name: addon.name,
+      description: addon.description,
+      price: addon.price,
+      categoryId: 'addons',
+      createdAt: addon.createdAt ?? DateTime.now(),
+      imageUrl: addon.imageUrl,
+    );
+
+    // Check if it's already in the cart as a standalone item
+    final existingIndex = updatedCart.indexWhere((item) => item.id == addon.id);
+
+    if (existingIndex != -1) {
+      updatedCart[existingIndex] = updatedCart[existingIndex].copyWith(
+        quantity: updatedCart[existingIndex].quantity + quantity,
+      );
+    } else {
+      updatedCart.add(CartItem(
+        id: addon.id,
+        name: addon.name,
+        description: addon.description,
+        basePrice: addon.price,
+        imageUrl: addon.imageUrl ?? '',
+        quantity: quantity,
+        originalItem: dummyMenuItem,
+      ));
+    }
+
+    // Reset quantity
+    final updatedQuantities = Map<String, int>.from(state.itemQuantities);
+    updatedQuantities[addon.id] = 0;
+
     emit(state.copyWith(
       cartItems: updatedCart,
       itemQuantities: updatedQuantities,
@@ -194,19 +271,76 @@ class RestaurantMenuCubit extends Cubit<RestaurantMenuState> {
 
 
   /// Place an order
-  void placeOrder(Order order) {
+  Future<void> placeOrder({
+    required String name,
+    required String phone,
+    required String address,
+    String? notes,
+  }) async {
     // Set placing order state
     emit(state.copyWith(isPlacingOrder: true));
-    
-    // Simulate API call delay (in production, this would be an actual API call)
-    Future.delayed(const Duration(milliseconds: 500), () {
-      // Store the order and clear cart
+
+    try {
+      // Prepare items for JSON
+      final itemsJson = state.cartItems.map((item) {
+        return {
+          'name': item.name,
+          'price': item.basePrice,
+          'quantity': item.quantity,
+          'item_id': item.id,
+          'addons': item.selectedAddOns.map((addon) => {
+            'name': addon.name,
+            'price': addon.price,
+            'addon_id': addon.id,
+          }).toList(),
+        };
+      }).toList();
+
+      // Try to parse coordinates if address is in "Lat: x, Lng: y" format
+      double? latitude;
+      double? longitude;
+      
+      if (address.startsWith('Lat:')) {
+        try {
+          final parts = address.split(',');
+          if (parts.length == 2) {
+            final latPart = parts[0].trim().substring(4).trim();
+            final lngPart = parts[1].trim().substring(4).trim();
+            latitude = double.tryParse(latPart);
+            longitude = double.tryParse(lngPart);
+          }
+        } catch (_) {
+          // Ignore parsing errors
+        }
+      }
+
+      // Convert total price to double if needed (state.totalCartPrice is double)
+      // Note: we removed fees, so total is just items total
+      
+      await _repository.submitOrder(
+        customerName: name, // We might need to add name field to UI
+        customerPhone: phone,
+        address: address,
+        latitude: latitude,
+        longitude: longitude,
+        items: itemsJson,
+        notes: notes,
+        totalPrice: state.totalCartPrice,
+      );
+
+      // Clear cart
       emit(state.copyWith(
-        lastOrder: order,
         cartItems: const [],
         isPlacingOrder: false,
       ));
-    });
+    } catch (e) {
+      print('Error placing order: $e'); // For debugging
+      emit(state.copyWith(
+        isPlacingOrder: false,
+        // In a real app, store error in state to show UI feedback
+      ));
+      rethrow; // Re-throw to handle in UI
+    }
   }
 
   /// Clear entire cart

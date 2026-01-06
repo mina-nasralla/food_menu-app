@@ -90,12 +90,35 @@ class _EditCartItemDialogState extends State<EditCartItemDialog> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.asset(
-                            widget.cartItem.imageUrl,
-                            width: 60,
-                            height: 60,
-                            fit: BoxFit.cover,
-                          ),
+                          child: widget.cartItem.imageUrl.isNotEmpty
+                              ? Image.network(
+                                  widget.cartItem.imageUrl,
+                                  width: 60,
+                                  height: 60,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      width: 60,
+                                      height: 60,
+                                      color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2),
+                                      child: Icon(
+                                        Icons.fastfood,
+                                        color: Theme.of(context).colorScheme.primary,
+                                        size: 30,
+                                      ),
+                                    );
+                                  },
+                                )
+                              : Container(
+                                  width: 60,
+                                  height: 60,
+                                  color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.2),
+                                  child: Icon(
+                                    Icons.fastfood,
+                                    color: Theme.of(context).colorScheme.primary,
+                                    size: 30,
+                                  ),
+                                ),
                         ),
                         const SizedBox(width: 12),
                         Expanded(

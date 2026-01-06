@@ -36,6 +36,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get addOns => 'الإضافات';
 
   @override
+  String get recommendedAddons => 'إضافات مقترحة';
+
+  @override
   String get specialInstructions => 'تعليمات خاصة';
 
   @override
@@ -69,7 +72,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get preparationTime => 'دقيقة';
 
   @override
-  String get searchHint => 'ابحث عن برجر، بيتزا، مشروبات...';
+  String get searchHint => 'بحث';
+
+  @override
+  String get searchPlaceholder => 'بحث...';
+
+  @override
+  String get noAddonsFound => 'لم يتم العثور على إضافات';
 
   @override
   String get homeNav => 'الرئيسية';
@@ -694,4 +703,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get saveChanges => 'حفظ التغييرات';
+
+  @override
+  String get directions => 'الاتجاهات';
+
+  @override
+  String get call => 'اتصال';
+
+  @override
+  String get deliveryTimeValue => '20-30 دقيقة';
+
+  @override
+  String get deliveryLabel => 'التوصيل';
+
+  @override
+  String get addressLabel => 'العنوان';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get selectOnMap => 'حدد على الخريطة';
+
+  @override
+  String get chooseLocationVisually => 'اختر الموقع بصريًا';
+
+  @override
+  String get typeAddress => 'أدخل العنوان';
+
+  @override
+  String get enterAddressManually => 'أدخل العنوان يدوياً';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get nameHint => 'أدخل اسمك';
 }

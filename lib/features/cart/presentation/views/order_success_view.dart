@@ -112,7 +112,7 @@ class OrderSuccessView extends StatelessWidget {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        context.go(RouteConstants.homePath);
+                        context.go(RouteConstants.restaurantMenuPath);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: theme.colorScheme.primary,

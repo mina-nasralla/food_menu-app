@@ -26,12 +26,16 @@ class BestSellersSection extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(localizations.bestSellers, style: AppFonts.styleBold20(context)),
+              Text(localizations.bestSellers,
+                  style: AppFonts.styleBold20(context)),
               Text(
                 localizations.seeAll,
                 style: AppFonts.styleMedium16(
                   context,
-                ).copyWith(color: Theme.of(context).colorScheme.primary),
+                ).copyWith(color: Theme
+                    .of(context)
+                    .colorScheme
+                    .primary),
               ),
             ],
           ),
@@ -57,7 +61,9 @@ class BestSellersSection extends StatelessWidget {
                     width: 240,
                     margin: const EdgeInsets.only(right: 16, bottom: 8),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
+                      color: Theme
+                          .of(context)
+                          .cardColor,
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
@@ -74,12 +80,24 @@ class BestSellersSection extends StatelessWidget {
                           padding: const EdgeInsets.all(10),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(16),
-                            child: Image.asset(
-                              menuItem.imageUrl,
-                              height: 140,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
+                            child: menuItem.imageUrl != null &&
+                                    menuItem.imageUrl!.startsWith('http')
+                                ? Image.network(
+                                    menuItem.imageUrl!,
+                                    height: 140,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) =>
+                                        const Center(child: Icon(Icons.fastfood, size: 40)),
+                                  )
+                                : Image.asset(
+                                    menuItem.imageUrl ?? 'assets/img.jpg',
+                                    height: 140,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) =>
+                                        const Center(child: Icon(Icons.fastfood, size: 40)),
+                                  ),
                           ),
                         ),
 
@@ -103,7 +121,11 @@ class BestSellersSection extends StatelessWidget {
                                   style: AppFonts.styleRegular12(
                                     context,
                                   ).copyWith(
-                                      color: Theme.of(context).textTheme.bodyMedium?.color),
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.color),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -113,40 +135,54 @@ class BestSellersSection extends StatelessWidget {
                                       .spaceBetween,
                                   children: [
                                     Text(
-                                      '\$${menuItem.basePrice.toStringAsFixed(
+                                      '\$${menuItem.finalPrice.toStringAsFixed(
                                           2)}',
                                       style: AppFonts.styleBold18(context),
                                     ),
-                                    QuantityControl(
-                                      itemId: menuItem.id,
-                                      isCompact: true,
-                                    )
                                   ],
+                                ),
+                                const SizedBox(height: 4),
+                                QuantityControl(
+                                  itemId: menuItem.id,
+                                  isCompact: true,
                                 ),
                                 const SizedBox(height: 8),
 
                                 // Order button
                                 ElevatedButton(
                                   onPressed: () {
-                                    context.read<RestaurantMenuCubit>().addToCart(
+                                    context
+                                        .read<RestaurantMenuCubit>()
+                                        .addToCart(
                                       id: menuItem.id,
                                       name: menuItem.name,
                                       description: menuItem.description,
-                                      basePrice: menuItem.basePrice,
-                                      imageUrl: menuItem.imageUrl,
+                                      basePrice: menuItem.finalPrice,
+                                      imageUrl: menuItem.imageUrl ?? '',
                                       originalItem: menuItem,
                                     );
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                        content: Text(localizations.addedToCart(1, menuItem.name)),
-                                        backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.successDark : AppColors.success,
+                                        content: Text(localizations.addedToCart(
+                                            1, menuItem.name)),
+                                        backgroundColor: Theme
+                                            .of(context)
+                                            .brightness == Brightness.dark
+                                            ? AppColors.successDark
+                                            : AppColors.success,
                                         duration: const Duration(seconds: 1),
                                       ),
                                     );
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Theme.of(context).colorScheme.primary,
-                                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                                    backgroundColor: Theme
+                                        .of(context)
+                                        .colorScheme
+                                        .primary,
+                                    foregroundColor: Theme
+                                        .of(context)
+                                        .colorScheme
+                                        .onPrimary,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
@@ -163,8 +199,13 @@ class BestSellersSection extends StatelessWidget {
                                       const SizedBox(width: 8),
                                       Text(
                                         localizations.addToCart,
-                                        style: AppFonts.styleRegular14(context).copyWith(
-                                          color: Theme.of(context).colorScheme.onPrimary,
+                                        style: AppFonts
+                                            .styleRegular14(context)
+                                            .copyWith(
+                                          color: Theme
+                                              .of(context)
+                                              .colorScheme
+                                              .onPrimary,
                                         ),
                                       ),
                                     ],
@@ -177,7 +218,7 @@ class BestSellersSection extends StatelessWidget {
                       ],
                     ),
                   ));
-              },
+            },
           ),
         ),
       ],

@@ -77,8 +77,9 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
   }
 
   double get _totalPrice {
-    final baseTotal = widget.menuItem.basePrice * _quantity;
-    final addOnsTotal = _selectedAddOns.fold(0.0, (sum, addon) => sum + (addon.price * addon.quantity));
+    final baseTotal = widget.menuItem.finalPrice * _quantity;
+    final addOnsTotal = _selectedAddOns.fold(
+        0.0, (sum, addon) => sum + (addon.price * addon.quantity));
     return baseTotal + addOnsTotal;
   }
 
@@ -138,8 +139,8 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
         id: widget.menuItem.id,
         name: widget.menuItem.name,
         description: widget.menuItem.description,
-        basePrice: widget.menuItem.basePrice,
-        imageUrl: widget.menuItem.imageUrl,
+        basePrice: widget.menuItem.finalPrice,
+        imageUrl: widget.menuItem.imageUrl ?? '',
         originalItem: widget.menuItem,
         selectedAddOns: _selectedAddOns,
         spiceLevel: widget.menuItem.hasSpiceLevelOption ? _selectedSpiceLevel : null,
@@ -186,10 +187,20 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(
-                    widget.menuItem.imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+                  if (widget.menuItem.imageUrl != null &&
+                      widget.menuItem.imageUrl!.isNotEmpty)
+                    Image.network(
+                      widget.menuItem.imageUrl!,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Center(
+                        child: Icon(Icons.fastfood, size: 80, color: Colors.white),
+                      ),
+                    )
+                  else
+                    const Center(
+                      child: Icon(Icons.fastfood, size: 80, color: Colors.white),
+                    ),
                   // Gradient overlay
                   Positioned(
                     bottom: 0,
@@ -242,12 +253,25 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            '\$${widget.menuItem.basePrice.toStringAsFixed(2)}',
-                            style: theme.textTheme.headlineMedium?.copyWith(
-                              color: theme.colorScheme.primary,
-                              fontWeight: FontWeight.w600,
-                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (widget.menuItem.discount > 0)
+                                Text(
+                                  '\$${widget.menuItem.price.toStringAsFixed(2)}',
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    decoration: TextDecoration.lineThrough,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              Text(
+                                '\$${widget.menuItem.finalPrice.toStringAsFixed(2)}',
+                                style: theme.textTheme.headlineMedium?.copyWith(
+                                  color: theme.colorScheme.primary,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
                           ),
                           Row(
                             children: [

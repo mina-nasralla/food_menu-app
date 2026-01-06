@@ -36,6 +36,10 @@
   "@addOns": {
     "description": "Add-ons section title"
   },
+  "recommendedAddons": "إضافات مقترحة",
+  "@recommendedAddons": {
+    "description": "Recommended add-ons section title"
+  },
   "specialInstructions": "تعليمات خاصة",
   "@specialInstructions": {
     "description": "Special instructions section title"
@@ -84,9 +88,17 @@
   "@preparationTime": {
     "description": "Minutes abbreviation for preparation time"
   },
-  "searchHint": "ابحث عن برجر، بيتزا، مشروبات...",
+  "searchHint": "بحث",
   "@searchHint": {
     "description": "Hint text for search bar"
+  },
+  "searchPlaceholder": "بحث...",
+  "@searchPlaceholder": {
+    "description": "Generic search placeholder"
+  },
+  "noAddonsFound": "لم يتم العثور على إضافات",
+  "@noAddonsFound": {
+    "description": "Message when no addons match search"
   },
   "homeNav": "الرئيسية",
   "@homeNav": {
@@ -485,5 +497,39 @@
   "openingTime": "وقت الفتح",
   "closingTime": "وقت الإغلاق",
   "isClosed": "مغلق",
-  "saveChanges": "حفظ التغييرات"
+  "saveChanges": "حفظ التغييرات",
+  "directions": "الاتجاهات",
+  "call": "اتصال",
+  "deliveryTimeValue": "20-30 دقيقة",
+  "deliveryLabel": "التوصيل",
+  "addressLabel": "العنوان",
+  "error": "خطأ",
+  "selectOnMap": "حدد على الخريطة",
+  "@selectOnMap": {
+    "description": "Option to select address on map"
+  },
+  "chooseLocationVisually": "اختر الموقع بصريًا",
+  "@chooseLocationVisually": {
+    "description": "Subtitle for select on map option"
+  },
+  "typeAddress": "أدخل العنوان",
+  "@typeAddress": {
+    "description": "Option to type address manually"
+  },
+  "enterAddressManually": "أدخل العنوان يدوياً",
+  "@enterAddressManually": {
+    "description": "Subtitle for type address option"
+  },
+  "confirm": "تأكيد",
+  "@confirm": {
+    "description": "Confirm button text"
+  },
+  "name": "الاسم",
+  "@name": {
+    "description": "Customer name label"
+  },
+  "nameHint": "أدخل اسمك",
+  "@nameHint": {
+    "description": "Customer name field hint"
+  }
 }

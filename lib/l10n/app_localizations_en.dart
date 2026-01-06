@@ -36,6 +36,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addOns => 'Add-ons';
 
   @override
+  String get recommendedAddons => 'Recommended Add-ons';
+
+  @override
   String get specialInstructions => 'Special Instructions';
 
   @override
@@ -69,7 +72,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get preparationTime => 'min';
 
   @override
-  String get searchHint => 'Search for burgers, pizza, drinks...';
+  String get searchHint => 'Search';
+
+  @override
+  String get searchPlaceholder => 'Search...';
+
+  @override
+  String get noAddonsFound => 'No addons found';
 
   @override
   String get homeNav => 'Home';
@@ -697,4 +706,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get saveChanges => 'Save Changes';
+
+  @override
+  String get directions => 'Directions';
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String get deliveryTimeValue => '20-30 min';
+
+  @override
+  String get deliveryLabel => 'Delivery';
+
+  @override
+  String get addressLabel => 'Address';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get selectOnMap => 'Select on Map';
+
+  @override
+  String get chooseLocationVisually => 'Choose location visually';
+
+  @override
+  String get typeAddress => 'Type Address';
+
+  @override
+  String get enterAddressManually => 'Enter address manually';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get nameHint => 'Enter your name';
 }

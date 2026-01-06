@@ -6,6 +6,7 @@ import '../../../../core/config/locale/locale_cubit.dart';
 import '../../../../core/config/theme/theme_cubit.dart';
 import '../../../../core/utilities/app_fonts.dart';
 
+
 /// Custom AppBar widget for restaurant menu page
 class RestaurantMenuAppBar extends StatelessWidget implements PreferredSizeWidget {
   const RestaurantMenuAppBar({super.key});
@@ -64,6 +65,7 @@ class RestaurantMenuAppBar extends StatelessWidget implements PreferredSizeWidge
           },
         ),
         const SizedBox(width: 8),
+
       ],
     );
   }

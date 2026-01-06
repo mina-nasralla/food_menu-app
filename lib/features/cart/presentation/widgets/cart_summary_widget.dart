@@ -5,19 +5,15 @@ import 'package:food_menu_app/l10n/app_localizations.dart';
 /// Widget for displaying cart summary with pricing breakdown
 class CartSummaryWidget extends StatelessWidget {
   final double subtotal;
-  final double deliveryFee;
-  final double serviceFee;
   final VoidCallback onCheckout;
 
   const CartSummaryWidget({
     super.key,
     required this.subtotal,
-    this.deliveryFee = 1.99,
-    this.serviceFee = 0.30,
     required this.onCheckout,
   });
 
-  double get total => subtotal + deliveryFee + serviceFee;
+  double get total => subtotal;
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +36,7 @@ class CartSummaryWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             // Summary Header
-            Text(
-              l10n.summary,
-              style: AppFonts.styleBold18(context),
-            ),
+            Text(l10n.summary, style: AppFonts.styleBold18(context)),
             const SizedBox(height: 16),
 
             // Subtotal
@@ -51,22 +44,6 @@ class CartSummaryWidget extends StatelessWidget {
               context,
               l10n.subtotal,
               '\$${subtotal.toStringAsFixed(2)}',
-            ),
-            const SizedBox(height: 8),
-
-            // Delivery Fee
-            _buildSummaryRow(
-              context,
-              l10n.deliveryFee,
-              '\$${deliveryFee.toStringAsFixed(2)}',
-            ),
-            const SizedBox(height: 8),
-
-            // Service Fee
-            _buildSummaryRow(
-              context,
-              l10n.serviceFee,
-              '\$${serviceFee.toStringAsFixed(2)}',
             ),
             const SizedBox(height: 16),
 
@@ -77,15 +54,12 @@ class CartSummaryWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  l10n.total,
-                  style: AppFonts.styleBold20(context),
-                ),
+                Text(l10n.total, style: AppFonts.styleBold20(context)),
                 Text(
                   '\$${total.toStringAsFixed(2)}',
-                  style: AppFonts.styleBold20(context).copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
+                  style: AppFonts.styleBold20(
+                    context,
+                  ).copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
               ],
             ),
@@ -107,9 +81,9 @@ class CartSummaryWidget extends StatelessWidget {
                 ),
                 child: Text(
                   l10n.checkout,
-                  style: AppFonts.styleBold18(context).copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
+                  style: AppFonts.styleBold18(
+                    context,
+                  ).copyWith(color: Theme.of(context).colorScheme.onPrimary),
                 ),
               ),
             ),
@@ -125,14 +99,11 @@ class CartSummaryWidget extends StatelessWidget {
       children: [
         Text(
           label,
-          style: AppFonts.styleRegular14(context).copyWith(
-            color: Theme.of(context).textTheme.bodyMedium?.color,
-          ),
+          style: AppFonts.styleRegular14(
+            context,
+          ).copyWith(color: Theme.of(context).textTheme.bodyMedium?.color),
         ),
-        Text(
-          value,
-          style: AppFonts.styleRegular14(context),
-        ),
+        Text(value, style: AppFonts.styleRegular14(context)),
       ],
     );
   }
