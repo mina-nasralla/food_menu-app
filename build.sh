@@ -10,6 +10,6 @@ flutter --version
 
 # Build the web app
 echo "Building Flutter web app..."
-flutter build web --release --base-href=/
+flutter build web --release
 
 echo "Build complete!"
