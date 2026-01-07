@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
@@ -42,7 +43,46 @@ class _MapPickerScreenState extends State<MapPickerScreen> {
     setState(() => _isLoading = true);
 
     try {
-      // Check permissions
+      // Web platform has limited geolocation support
+      if (kIsWeb) {
+        // Try to get location but with better error handling for web
+        try {
+          LocationPermission permission = await Geolocator.checkPermission();
+          if (permission == LocationPermission.denied) {
+            permission = await Geolocator.requestPermission();
+            if (permission == LocationPermission.denied) {
+              _showError('Location access denied. Please enable location in your browser settings.');
+              setState(() => _isLoading = false);
+              return;
+            }
+          }
+
+          Position position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high,
+          ).timeout(
+            const Duration(seconds: 10),
+            onTimeout: () {
+              throw Exception('Location request timed out. Please select a location manually.');
+            },
+          );
+
+          final newPosition = LatLng(position.latitude, position.longitude);
+          
+          setState(() {
+            _currentPosition = newPosition;
+            _isLoading = false;
+          });
+
+          _mapController.move(newPosition, 15.0);
+          await _getAddressFromLatLng(newPosition);
+        } catch (e) {
+          _showError('Location unavailable on web. Please tap on the map to select your location.');
+          setState(() => _isLoading = false);
+        }
+        return;
+      }
+
+      // Mobile/Desktop platform - full geolocation support
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
@@ -84,9 +124,13 @@ class _MapPickerScreenState extends State<MapPickerScreen> {
 
   Future<void> _getAddressFromLatLng(LatLng position) async {
     try {
+      // Geocoding may not work reliably on web, so we handle it gracefully
       List<Placemark> placemarks = await placemarkFromCoordinates(
         position.latitude,
         position.longitude,
+      ).timeout(
+        const Duration(seconds: 5),
+        onTimeout: () => <Placemark>[],
       );
 
       if (placemarks.isNotEmpty) {
@@ -128,10 +172,32 @@ class _MapPickerScreenState extends State<MapPickerScreen> {
             ),
           );
         });
+      } else {
+        // No placemarks returned, use coordinates
+        setState(() {
+          _selectedAddress = 'Lat: ${position.latitude.toStringAsFixed(6)}, Lng: ${position.longitude.toStringAsFixed(6)}';
+          _markers.clear();
+          _markers.add(
+            Marker(
+              point: position,
+              width: 40,
+              height: 40,
+              child: const Icon(
+                Icons.location_on,
+                color: Colors.red,
+                size: 40,
+              ),
+            ),
+          );
+        });
       }
     } catch (e) {
       // If geocoding fails (common on web), use coordinates as address
-      print('Geocoding error: $e');
+      if (kIsWeb) {
+        print('Geocoding not available on web, using coordinates');
+      } else {
+        print('Geocoding error: $e');
+      }
       setState(() {
         _selectedAddress = 'Lat: ${position.latitude.toStringAsFixed(6)}, Lng: ${position.longitude.toStringAsFixed(6)}';
         _markers.clear();
