@@ -1,8 +1,8 @@
 # Flutter build artifacts
 .dart_tool/
 .packages
-build/
-!build/web/
+build/web/
+!build.sh
 
 # IDE
 .idea/
