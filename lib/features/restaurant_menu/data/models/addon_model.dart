@@ -27,13 +27,13 @@ class AddOn extends Equatable {
 
   factory AddOn.fromJson(Map<String, dynamic> json) {
     return AddOn(
-      id: json['id'] ?? '',
-      name: json['name'] ?? '',
-      description: json['description'] ?? '',
-      price: (json['price'] as num?)?.toDouble() ?? 0.0,
-      imageUrl: json['image_url'],
-      isAvailable: json['is_available'] ?? true,
-      createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : null,
+      id: json['id']?.toString() ?? '',
+      name: json['name']?.toString() ?? '',
+      description: json['description']?.toString() ?? '',
+      price: double.tryParse(json['price']?.toString() ?? '0') ?? 0.0,
+      imageUrl: json['image_url']?.toString(),
+      isAvailable: json['is_available'] == true || json['is_available'] == 'TRUE' || json['is_available'] == 1,
+      createdAt: json['created_at'] != null ? DateTime.parse(json['created_at'].toString()) : null,
     );
   }
 

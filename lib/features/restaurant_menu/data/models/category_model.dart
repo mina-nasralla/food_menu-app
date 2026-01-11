@@ -17,11 +17,11 @@ class CategoryModel extends Equatable {
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(
-      id: json['id'] ?? '',
-      name: json['name'] ?? '',
-      imageUrl: json['image_url'],
-      itemsCount: json['items_count'] ?? 0,
-      createdAt: DateTime.parse(json['created_at'] ?? DateTime.now().toIso8601String()),
+      id: json['id']?.toString() ?? '',
+      name: json['name']?.toString() ?? '',
+      imageUrl: json['image_url']?.toString(),
+      itemsCount: int.tryParse(json['items_count']?.toString() ?? '0') ?? 0,
+      createdAt: DateTime.parse(json['created_at']?.toString() ?? DateTime.now().toIso8601String()),
     );
   }
 

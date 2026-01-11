@@ -47,21 +47,21 @@ class MenuItem extends Equatable {
 
   factory MenuItem.fromJson(Map<String, dynamic> json) {
     return MenuItem(
-      id: json['id'] ?? '',
-      name: json['name'] ?? '',
-      description: json['description'] ?? '',
-      price: (json['price'] as num?)?.toDouble() ?? 0.0,
-      discount: (json['discount'] as num?)?.toDouble() ?? 0.0,
-      imageUrl: json['image_url'],
-      categoryName: json['category'],
-      categoryId: json['category_id'] ?? '',
-      isAvailable: json['is_available'] ?? true,
+      id: json['id']?.toString() ?? '',
+      name: json['name']?.toString() ?? '',
+      description: json['description']?.toString() ?? '',
+      price: double.tryParse(json['price']?.toString() ?? '0') ?? 0.0,
+      discount: double.tryParse(json['discount']?.toString() ?? '0') ?? 0.0,
+      imageUrl: json['image_url']?.toString(),
+      categoryName: json['category']?.toString(),
+      categoryId: json['category_id']?.toString() ?? '',
+      isAvailable: json['is_available'] == true || json['is_available'] == 'TRUE' || json['is_available'] == 1,
       availableAddOns: const [],
       // Will be handled in a separate integration if needed
       hasSpiceLevelOption: false,
-      preparationTime: 20,
+      preparationTime: int.tryParse(json['preparation_time']?.toString() ?? '20') ?? 20,
       createdAt: DateTime.parse(
-        json['created_at'] ?? DateTime.now().toIso8601String(),
+        json['created_at']?.toString() ?? DateTime.now().toIso8601String(),
       ),
     );
   }
